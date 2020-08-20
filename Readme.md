@@ -54,7 +54,7 @@ Doom Emacs
 
 # USE
 
--   **`C-c C-e n o`:** Export as PDF and Open
+-   **`C-c C-e r o`:** Export as PDF and Open
 
 
 
