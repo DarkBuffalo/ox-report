@@ -110,9 +110,9 @@ To configure the export we use the header of the org file
 - [X] Ajouter la function fullwidth
 
 
-
-* 0.1
-** Releases
+* CHANGELOG
+** v0.1 <08.2020>
+*** Features
 - ADD:Layout like 'Tufte'
 - ADD:two columns toc
 - ADD:margin notes replace footnote
