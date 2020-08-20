@@ -6,13 +6,12 @@
 
 ;;; Code:
 ;;; Define Back-End
-;;(require 'ox)
-(require 'ox-org)
+(require 'ox)
 (require 'cl-lib)
 
 
 (add-to-list 'org-latex-classes
-             '("notes"                          ;class-name
+             '("report"                          ;class-name
                "\\documentclass[paper=a4,11pt,headinclude,footinclude,BCOR=5mm]{scrartcl}
 \\RequirePackage[utf8]{inputenc}
 \\RequirePackage[T1]{fontenc}
@@ -615,9 +614,6 @@ headsep=1cm ]{geometry}
 }
 
 
-
-
-
 \\makeatother
 
 " ;;import de la feuille de syle dans texmf
@@ -627,9 +623,19 @@ headsep=1cm ]{geometry}
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
+
+
+(defgroup org-export-report nil
+  "Options specific to Report back-end."
+  :tag "Org Report PDF"
+  :group 'ox-report
+  :version "26.1"
+  :package-version '(Org . "8.0"))
+
+
 (org-export-define-derived-backend 'report 'latex
   :options-alist
-  '((:latex-class "LATEX_CLASS" nil "notes" t)
+  '((:latex-class "LATEX_CLASS" nil "report" t)
     (:present "PRESENT" nil nil)
     (:absent "ABSENT" nil nil)
     (:excuse "EXCUSE" nil nil)
@@ -776,7 +782,7 @@ will be displayed if `org-export-show-temporary-export-buffer' is
 non-nil."
   (interactive)
   (let (report-special-contents)
-    (org-export-to-buffer 'notes "*Org Report Export*"
+    (org-export-to-buffer 'report "*Org Report Export*"
       async subtreep visible-only body-only ext-plist
       (lambda () (LaTeX-mode)))))
 
@@ -814,13 +820,13 @@ Return output file's name."
   (interactive)
   (let ((outfile (org-export-output-file-name ".tex" subtreep))
         (report-special-contents))
-    (org-export-to-file 'notes outfile
+    (org-export-to-file 'report outfile
       async subtreep visible-only body-only ext-plist)))
 
 ;;;###autoload
 (defun report-export-to-pdf
     (&optional async subtreep visible-only body-only ext-plist)
-  "Export current buffer as a notes (pdf).
+  "Export current buffer as a Report (pdf).
 
 If narrowing is active in the current buffer, only export its
 narrowed part.
@@ -849,18 +855,16 @@ Return PDF file's name."
   (interactive)
   (let ((file (org-export-output-file-name ".tex" subtreep))
 	(report-special-contents))
-    (org-export-to-file 'notes file
+    (org-export-to-file 'report file
       async subtreep visible-only body-only ext-plist
       (lambda (file) (org-latex-compile file)))))
 
 ;;;###autoload
 (defun report-export-to-pdf-and-open
     (&optional async subtreep visible-only body-only ext-plist)
-
-
   (interactive)
   (let ((outfile (org-export-output-file-name ".tex" subtreep)))
-    (org-export-to-file 'notes outfile
+    (org-export-to-file 'report outfile
       async subtreep visible-only body-only ext-plist
       (lambda (file) (org-latex-compile file))))
 
