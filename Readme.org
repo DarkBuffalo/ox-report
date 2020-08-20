@@ -1,4 +1,4 @@
-#+title:Readme ox-notes
+#+title:OX-REPORT
 #+author: Matthias David
 
 
@@ -22,7 +22,7 @@ If you use Doom Emacs
   :recipe (:host gitlab :repo "DarkBuffalo/ox-notes"))
 #+END_SRC
 
-* Prerequisites
+* PREREQUISITES
 ** Linux
 + Texlive :: =sudo apt install texlive texlive-extra texlive-fonts-extra=
 + Latex package
