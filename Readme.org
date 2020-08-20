@@ -130,4 +130,4 @@ To configure the export we use the header of the org file
 
 
 * THANKS
--  Clemens Radermacher [[https://github.com/clemera][@clamera]] for [[https://www.reddit.com/r/emacs/comments/i7279y/emacs_lisp_error_noob/][help]
+-  Clemens Radermacher [[https://github.com/clemera][@clamera]] for [[https://www.reddit.com/r/emacs/comments/i7279y/emacs_lisp_error_noob/][help]]
