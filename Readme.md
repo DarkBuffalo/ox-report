@@ -5,8 +5,16 @@
 
 ## INSTALLATION
 
+Local
+
     (use-package! ox-report
       :load-path "~/Dropbox/emacs/lib/ox-report")
+
+Doom Emacs
+
+    ;;ox-minutes
+    (package! ox-report
+      :recipe (:host github :repo "DarkBuffalo/ox-report"))
 
 
 ## Pre-requisite
