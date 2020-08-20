@@ -1,9 +1,6 @@
 #+title:Readme ox-notes
 #+author: Matthias David
 
-#+begin_comment
-Export your org file to minutes report PDF file
-#+end_comment
 
 #+caption: Export
 #+attr_latex: :width 300px
@@ -12,13 +9,14 @@ Export your org file to minutes report PDF file
 -----
 
 * INSTALLATION
-** Local with use-package
+If you use =use-package=, you can do the below instead:
+
 #+BEGIN_SRC emacs-lisp
 (use-package ox-notes
   :load-path "~/Dropbox/emacs/lib/ox-notes")
 #+END_SRC
 
-**  Doom Emacs
+If you use Doom Emacs
 #+BEGIN_SRC emacs-lisp
 (package! ox-notes
   :recipe (:host gitlab :repo "DarkBuffalo/ox-notes"))
@@ -55,7 +53,7 @@ Export your org file to minutes report PDF file
   - babel
   - babel-french
 
-* USE
+* USAGE
 - =C-c C-e r o= :: Export as PDF and Open
 
 
@@ -122,7 +120,7 @@ To configure the export we use the header of the org file
 - ADD:timebox
 - ADD:fullpage margin
 
-* Contributing
+* CONTRIBUTING
 
 1. Fork it (<https://github.com/DarkBuffalo/ox-report/fork>)
 2. Create your feature branch (`git checkout -b feature/fooBar`)
@@ -131,3 +129,5 @@ To configure the export we use the header of the org file
 5. Create a new Pull Request
 
 
+* THANKS
+-  Clemens Radermacher [[https://github.com/clemera][@clamera]] for [[https://www.reddit.com/r/emacs/comments/i7279y/emacs_lisp_error_noob/][help]
