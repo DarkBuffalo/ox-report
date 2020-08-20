@@ -1,0 +1,175 @@
+#+title:Readme ox-notes
+#+author: Matthias David
+#+options: toc:nil
+#+ou:Zoom
+#+quand: 20/2/2021
+#+initiateur: Robert
+#+projet: ox-minutes
+#+absent: C. Robert,T. tartanpion
+#+present: K. Soulet,I. Payet
+#+excuse: Sophie Fonsec,Karine Soulet
+#+dure: 2h
+
+* INSTALLATION
+
+** Local with use-package
+#+BEGIN_SRC emacs-lisp
+(use-package! ox-notes
+  :load-path "~/Dropbox/emacs/lib/ox-notes")
+#+END_SRC
+
+** TODO Doom Emacs
+#+BEGIN_SRC emacs-lisp
+(package! ox-notes
+  :recipe (:host gitlab :repo "DarkBuffalo/ox-notes"))
+#+END_SRC
+
+** Pre-requisite
+*** Linux
+- Texlive :: =sudo apt install texlive texlive-extra texlive-fonts-extra=
+**** Latex package
+- titling
+- enumitem
+- snotez
+- pgfopts
+- pgf
+- marginnote
+- xpatch
+- classicthesis
+- bera
+- eulervm
+- mparhack
+- titlesec
+- tocloft ??
+- arsclassica
+- tcolorbox
+- environ
+- trimspaces
+- ncctools
+- lastpage
+- wrapfig
+- amsmath
+- capt-of
+- bigfoot
+- iwona
+- babel
+- babel-french
+
+* USE
+- =C-c C-e n o= :: Export as PDF and Open
+
+
+
+* CONFIGURATION
+To configure the export we use the header of the org file
+** standard
+#+BEGIN_SRC org
+#+title:Readme ox-notes
+#+author: Matthias David
+#+options: toc:nil
+#+END_SRC
+*** With toc
+#+BEGIN_SRC org
+#+options: toc:1
+#+END_SRC
+
+#+caption: Table of Content
+#+attr_latex: :width 300px
+[[file:img/toc.png]]
+
+** Place and date of the meeting
+#+BEGIN_SRC org
+#+ou:Zoom
+#+quand: 20/2/2021
+#+END_SRC
+
+** Project concerning the meeting
+#+BEGIN_SRC org
+#+projet: ox-minutes
+#+END_SRC
+
+** Absent, present or excused
+#+BEGIN_SRC org
+#+absent: C. Robert,T. tartanpion
+#+present: K. Soulet,I. Payet
+#+excuse:Sophie Fonsec,Karine Soulet
+#+END_SRC
+
+
+* SCREENSHOT
+
+#+caption: Header of pdf
+#+attr_latex: :width 300px
+[[file:img/header.png]]
+
+
+* releases
+** 0.1
+- Layout like 'Tufte'
+- two columns toc
+- margin notes replace footnote [fn:essai]
+- table as possible on notes [fn:tablenotes]
+- timebox
+#+ATTR_LATEX: :options [20.12.2020]
+#+begin_lbox
+Description de la boite
+#+end_lbox
+
+#+ATTR_LATEX: :options [22.12.2020]
+#+begin_lbox
+Description de la seconde boite ou l'on apprend plein de chose sur cette date.
+#+end_lbox
+
+- fullpage margin
+#+begin_fullpage
+Ceci permet la suppression temporaire de la marge de type Tufte pour permettre d'écrire sur la largeur total de la page.
+#+end_fullpage
+Puis de reprendre après avec les marges normales[fn:margins]
+* Todos [60%]
+** [X] Ajouter le choix de la Toc par options dans ox-notes
+CLOSED: [2020-05-12 mar. 19:59]
+** [X] Ajouter le tableau de présence en intro
+CLOSED: [2020-08-11 mar. 11:56]
+:LOGBOOK:
+- CLOSING NOTE [2020-08-11 mar. 11:56]
+:END:
+** [X] Ajouter la function fullwidth
+CLOSED: [2020-06-04 jeu. 16:35]
+:LOGBOOK:
+- State "DONE"       from "BUG"        [2020-06-04 jeu. 16:35] \\
+  c'est dans Emacs avec le block begin_fullpage
+- State "BUG"        from "TODO"       [2020-06-04 jeu. 16:35]
+:END:
+** [ ] Fix Timebox
+** [ ] Multitoc error
+:LOGBOOK:
+- State "ERROR"      from "TODO"       [2020-06-04 jeu. 11:04] \\
+  Package tocbasic Warning: Usage of package `multitoc' is not recommended!
+  (tocbasic)                Note, this package generally results in empty ToCs
+  (tocbasic)                for all extension but `toc', `lof' and `lot' and
+  (tocbasic)                even for these extensions if you do not use the
+  (tocbasic)                corresponding multitoc options.
+  (tocbasic)                It is recommended to use:
+  (tocbasic)                  \usepackage{multicol}
+  (tocbasic)                  \BeforeStartingTOC{\begin{multicols}{2}}
+  (tocbasic)                  \AfterStartingTOC{\end{multicols}}
+  (tocbasic)                instead of loading package `multitoc'.
+  (tocbasic)                See the KOMA-Script manual for more information
+  (tocbasic)                about using \BeforeStartingTOC and \AfterStartingTOC
+  (tocbasic)                and the multicol manual for more information
+  (tocbasic)                about the `multicols' environment.
+:END:
+
+
+
+* Footnotes
+
+[fn:margins] notes test after fullpage
+
+[fn:tablenotes] *table in notes:*
+| Nom    | Présent | Excusé |
+|--------+---------+--------|
+| Robert | x       |        |
+| Marcel |         | x      |
+
+[fn:essai] footnotes are awesome marginnotes
