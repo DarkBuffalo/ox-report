@@ -6,7 +6,8 @@
 
 ;;; Code:
 ;;; Define Back-End
-(require 'ox)
+;;(require 'ox)
+(require 'ox-org)
 (require 'cl-lib)
 
 
@@ -746,7 +747,7 @@ headsep=1cm ]{geometry}
 ;;;###autoload
 (defun report-export-as-latex
     (&optional async subtreep visible-only body-only ext-plist)
-  "Export current buffer as a Matt report letter.
+  "Export current buffer as a Report latex.
 
 If narrowing is active in the current buffer, only export its
 narrowed part.
