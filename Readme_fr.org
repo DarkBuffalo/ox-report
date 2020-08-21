@@ -1,0 +1,134 @@
+#+title:OX-REPORT
+#+author: Matthias David
+
+
+#+caption: Export
+#+attr_latex: :width 300px
+[[file:img/ox-notes.gif]]
+
+-----
+
+* INSTALLATION
+Si vous utilisez =use-package= :
+
+#+BEGIN_SRC emacs-lisp
+(use-package ox-notes
+  :load-path "~/Dropbox/emacs/lib/ox-notes")
+#+END_SRC
+
+Si vous utilisez Doom Emacs :
+#+BEGIN_SRC emacs-lisp
+(package! ox-notes
+  :recipe (:host gitlab :repo "DarkBuffalo/ox-notes"))
+#+END_SRC
+
+* PRE-REQUIS
+** Linux
++ Texlive :: =sudo apt install texlive texlive-extra texlive-fonts-extra=
++ Les paquets LaTeX
+  - titling
+  - enumitem
+  - snotez
+  - pgfopts
+  - pgf
+  - marginnote
+  - xpatch
+  - classicthesis
+  - bera
+  - eulervm
+  - mparhack
+  - titlesec
+  - tocloft ??
+  - arsclassica
+  - tcolorbox
+  - environ
+  - trimspaces
+  - ncctools
+  - lastpage
+  - wrapfig
+  - amsmath
+  - capt-of
+  - bigfoot
+  - iwona
+  - babel
+  - babel-french
+
+* USAGE
+- =C-c C-e r o= :: Exporter au format PDF puis Ouvrir
+
+
+* CONFIGURATION
+Pour configurer l'export, il est nécessaire d'utiliser l'entetes du fichier Org
+
+** standard
+#+BEGIN_SRC org
+#+title:Readme ox-notes
+#+author: Matthias David
+#+options: toc:nil
+#+END_SRC
+** Avec tables des matieres
+#+BEGIN_SRC org
+#+options: toc:1
+#+END_SRC
+
+#+caption: Table of Content
+#+attr_latex: :width 300px
+[[file:img/toc.png]]
+
+** Lieu et date de la réunion
+#+BEGIN_SRC org
+#+ou:Zoom
+#+quand: 20/2/2021
+#+END_SRC
+
+** Projet/affaire concernant la réunion
+#+BEGIN_SRC org
+#+projet: ox-minutes
+#+END_SRC
+
+** Absent(s), présent(s) et excusé(s)
+#+BEGIN_SRC org
+#+absent: C. Robert,T. tartanpion
+#+present: K. Soulet,I. Payet
+#+excuse:Sophie Fonsec,Karine Soulet
+#+END_SRC
+
+
+* CAPTURE D'ECRAN
+
+#+caption: Header of pdf
+#+attr_latex: :width 300px
+[[file:img/header.png]]
+
+
+* TODOS
+- [ ] Add: Un logo c'est sympa
+- [ ] Add: Anglais is cool
+- [ ] Fix: La boite a temp dépasse sur les notes de marges
+- [ ] Fix: Erreur latex 'Multitoc'
+- [X] Ajouter le choix de la Toc par options dans ox-notes
+- [X] Ajouter le tableau de présence en intro
+- [X] Ajouter la function fullwidth
+
+
+* CHANGEMENTS
+** v0.1 <08.2020>
+*** Features
+- ADD:Mise en page de style 'Tufte'
+- ADD:Table des matieres sur deux colonnes
+- ADD:Les notes de marge remplace les notes de pied de pages (Style Tufte)
+- ADD:Les tableaux peuvent être mis en notes de marge
+- ADD:Boite temps
+- ADD:Écrire du contenu sur la pleine largeur de la page
+
+* COMMENT CONTRIBUER
+
+1. Bifurquez (Fork) le projet (<https://github.com/DarkBuffalo/ox-report/fork>)
+2. Créer votre branche d'amélioration (`git checkout -b feature/fooBar`)
+3. Enregistrez les modifications dans le dépôt (`git commit -am 'Add some fooBar'`)
+4. Mettre à jour les références distantes (`git push origin feature/fooBar`)
+5. Create a new Pull Request
+
+
+* THANKS
+-  Clemens Radermacher [[https://github.com/clemera][@clamera]] for [[https://www.reddit.com/r/emacs/comments/i7279y/emacs_lisp_error_noob/][help]]
