@@ -92,6 +92,24 @@ To configure the export we use the header of the org file
 #+excuse:Sophie Fonsec,Karine Soulet
 #+END_SRC
 
+** Use Yasnippet
+#+BEGIN_SRC org
+# -*- mode: snippet -*-
+# name: report
+# uuid:
+# key: projet
+# condition: t
+# --
+#+title: ${1:Titre}
+#+author: ${2:Auteur}
+#+options: toc:nil
+#+ou: ${3:Ou}
+#+quand: ${4:Date}
+#+present: ${5:Sophie Fonsec}
+#+initiateur: ${6:Matthias DAVID}
+#+projet: ${7:Secret project}
+#+dure: ${8:2H}
+#+END_SRC
 
 * SCREENSHOT
 

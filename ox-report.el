@@ -1,11 +1,31 @@
-;;; package --- export your org as minutes pdf
-;;; author: Matthias David <matthias@gnu.re>
+;;; package --- Export your org file to minutes report PDF file
+
+;; Author: Matthias David <matthias@gnu.re>
+;; URL: https://github.com/DarkBuffalo/ox-report
+;; Version: 0.1
+;; Keywords: org, report, exporter, meeting, minutes
+;; Package-Requires: ((ox) (cl-lib))
 
 ;;; Commentary:
-;; Pour créer un compte rendu de réunion facilement.
 
+;; This is a another exporter for org-mode that translates Org-mode file to
+;; beautiful PDF file
+;;
+;; EXAMPLE ORG FILE HEADER:
+;;
+;;   #+title:Readme ox-notes
+;;   #+author: Matthias David
+;;   #+options: toc:nil
+;;   #+ou:Zoom
+;;   #+quand: 20/2/2021
+;;   #+projet: ox-minutes
+;;   #+absent: C. Robert,T. tartanpion
+;;   #+present: K. Soulet,I. Payet
+;;   #+excuse:Sophie Fonsec,Karine Soulet
+;;
+;;
 ;;; Code:
-;;; Define Back-End
+
 (require 'ox)
 (require 'cl-lib)
 
@@ -351,8 +371,8 @@ headsep=1cm ]{geometry}
             {\\FrenchEnglish{NUMBER OF PAGES AND ATTACHMENTS}
                           {ANTALL SIDER OG VEDLEGG}}
 
-\\newcommand*{\\@participantlabel}{\\FrenchEnglish{PARTICIPANT}{DELTAKER}}
-\\newcommand*{\\@participantslabel}{\\FrenchEnglish{PARTICIPANTS}{DELTAKERE}}
+\\newcommand*{\\@participantlabel}{\\FrenchEnglish{PARTICIPANT}{PARTICIPANT}}
+\\newcommand*{\\@participantslabel}{\\FrenchEnglish{PARTICIPANTS}{PARTICIPANTS}}
 
 \\newcommand*{\\@phonelabel}{\\FrenchEnglish{Telephone}{Sentralbord}}
 \\newcommand*{\\@phone}{}
@@ -363,9 +383,9 @@ headsep=1cm ]{geometry}
 \\newcommand*{\\@planexp}{\\texttt{\\textbackslash planexp\\{\\}}}
 \\newcommand*{\\planexp}{\\renewcommand*{\\@planexp}}
 
-\\newcommand*{\\@planlabel}{\\FrenchEnglish{Planned}{Kostnadsplan}}
+\\newcommand*{\\@planlabel}{\\FrenchEnglish{Planned}{Planned}}
 
-\\newcommand*{\\@preparedlabel}{\\FrenchEnglish{PREPARED BY}{UTARBEIDET AV}}
+\\newcommand*{\\@preparedlabel}{\\FrenchEnglish{PREPARED BY}{PREPARED BY}}
 \\newcommand*{\\@prepared}{Set with \\texttt{\\textbackslash prepared\\{\\}}}
 \\newcommand*{\\prepared}{\\renewcommand*{\\@prepared}}
 
