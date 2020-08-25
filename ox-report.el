@@ -5,7 +5,6 @@
 ;; Version: 0.1
 ;; Keywords: org, report, exporter, meeting, minutes
 
-
 ;;; Commentary:
 ;;
 ;; This program is free software: you can redistribute it and/or modify
@@ -535,7 +534,7 @@ headsep=1cm ]{geometry}
 
 %% Header
 \\renewcommand{\\headrulewidth}{0pt}
-\\fancyhead[l]{\\includegraphics[width=0.25\\textwidth]{\\@mainlogo}}
+%%\\fancyhead[r]{\\includegraphics[width=0.20\\textwidth]{\\@mainlogo}}
 
 %% Footer
 \\renewcommand{\\footrulewidth}{0pt}
@@ -553,6 +552,20 @@ headsep=1cm ]{geometry}
   ~~\\newline
   \\@separator
 }
+
+
+
+%% The information box, shorter.
+\\newcommand{\\@rlogo}{
+  \\noindent
+  \\scriptsize
+  \\raggedleft
+  \\setlength{\\parskip}{1ex}
+  \\includegraphics[height=70px]{\\@mainlogo}
+%%\\includegraphics[width=\\textwidth]{\\@mainlogo}
+}
+
+
 
 
 \\RequirePackage{xparse}
@@ -602,10 +615,10 @@ headsep=1cm ]{geometry}
     \\Large \\@wheremeeting~\\\\\\@whenmeeting
   \\end{minipage}
   \\hfill
-  \\begin{minipage}[b]{0.25\\textwidth}
+  \\begin{minipage}[b]{0.20\\textwidth}
     %% Bring the colophon and address back up a bit
-    %%\vspace*{-25pt}%https://fr.overleaf.com/project/5f2c14ff95d5d40001ccdf96
-    %%\\@shortinfo
+    \\vspace*{-25pt}%%https://fr.overleaf.com/project/5f2c14ff95d5d40001ccdf96
+   \\@rlogo
   \\end{minipage}
 
   \\vspace{4ex}%%
@@ -644,6 +657,7 @@ headsep=1cm ]{geometry}
 }
 
 
+
 \\makeatother
 
 " ;;import de la feuille de syle dans texmf
@@ -678,6 +692,7 @@ headsep=1cm ]{geometry}
     (:with-toc nil "toc" 1 )
     (:latex-hyperref-p nil "texht" org-latex-with-hyperref t)
     (:resume "resume" nil nil)
+    (:logo "LOGO" nil " ")
     )
   :translate-alist '((template . report-template))
   :menu-entry
@@ -745,6 +760,11 @@ headsep=1cm ]{geometry}
              (format "%s" (plist-get info :projet) )) "}
 \\duration{"(when (plist-get info :dure)
              (format "%s" (plist-get info :dure) )) "}
+
+\\makeatletter
+"(when (plist-get info :logo)
+   (format "\\newcommand{\\@mainlogo}{%s}" (plist-get info :logo) )) "
+\\makeatother
 
 "
 
