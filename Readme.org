@@ -4,7 +4,7 @@
 
 #+caption: Export
 #+attr_latex: :width 300px
-[[file:ox-report.gif]]
+[[file:img/ox-report.gif]]
 
 -----
 
