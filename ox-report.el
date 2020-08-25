@@ -31,7 +31,7 @@
 ;;   #+absent: C. Robert,T. tartanpion
 ;;   #+present: K. Soulet,I. Payet
 ;;   #+excuse:Sophie Fonsec,Karine Soulet
-;;
+;;   #+logo: logo.png
 ;;
 ;;; Code:
 
@@ -534,7 +534,6 @@ headsep=1cm ]{geometry}
 
 %% Header
 \\renewcommand{\\headrulewidth}{0pt}
-%%\\fancyhead[r]{\\includegraphics[width=0.20\\textwidth]{\\@mainlogo}}
 
 %% Footer
 \\renewcommand{\\footrulewidth}{0pt}
@@ -555,7 +554,7 @@ headsep=1cm ]{geometry}
 
 
 
-%% The information box, shorter.
+%% The logo box.
 \\newcommand{\\@rlogo}{
   \\noindent
   \\scriptsize
@@ -564,8 +563,6 @@ headsep=1cm ]{geometry}
   \\includegraphics[height=70px]{\\@mainlogo}
 %%\\includegraphics[width=\\textwidth]{\\@mainlogo}
 }
-
-
 
 
 \\RequirePackage{xparse}
@@ -617,7 +614,7 @@ headsep=1cm ]{geometry}
   \\hfill
   \\begin{minipage}[b]{0.20\\textwidth}
     %% Bring the colophon and address back up a bit
-    \\vspace*{-25pt}%%https://fr.overleaf.com/project/5f2c14ff95d5d40001ccdf96
+    \\vspace*{-25pt} %%https://fr.overleaf.com/project/5f2c14ff95d5d40001ccdf96
    \\@rlogo
   \\end{minipage}
 

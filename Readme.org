@@ -19,7 +19,7 @@ If you use =use-package=, you can do the below instead:
 If you use Doom Emacs
 #+BEGIN_SRC emacs-lisp
 (package! ox-report
-  :recipe (:host gitlab :repo "DarkBuffalo/ox-report"))
+  :recipe (:host github :repo "DarkBuffalo/ox-report"))
 #+END_SRC
 
 * PREREQUISITES
@@ -151,6 +151,9 @@ To configure the export we use the header of the org file
 4. Push to the branch (`git push origin feature/fooBar`)
 5. Create a new Pull Request
 
+
+* LICENSE
+GPLv3.
 
 * THANKS
 -  Clemens Radermacher [[https://github.com/clemera][@clamera]] for [[https://www.reddit.com/r/emacs/comments/i7279y/emacs_lisp_error_noob/][help]]
