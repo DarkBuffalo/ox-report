@@ -4,7 +4,7 @@
 
 #+caption: Export
 #+attr_latex: :width 300px
-[[file:img/ox-notes.gif]]
+[[file:ox-report.gif]]
 
 -----
 
@@ -12,14 +12,14 @@
 If you use =use-package=, you can do the below instead:
 
 #+BEGIN_SRC emacs-lisp
-(use-package ox-notes
-  :load-path "~/Dropbox/emacs/lib/ox-notes")
+(use-package ox-report
+  :load-path "~/Dropbox/emacs/lib/ox-report")
 #+END_SRC
 
 If you use Doom Emacs
 #+BEGIN_SRC emacs-lisp
-(package! ox-notes
-  :recipe (:host gitlab :repo "DarkBuffalo/ox-notes"))
+(package! ox-report
+  :recipe (:host gitlab :repo "DarkBuffalo/ox-report"))
 #+END_SRC
 
 * PREREQUISITES
@@ -61,7 +61,7 @@ If you use Doom Emacs
 To configure the export we use the header of the org file
 ** standard
 #+BEGIN_SRC org
-#+title:Readme ox-notes
+#+title:Readme ox-report
 #+author: Matthias David
 #+options: toc:nil
 #+END_SRC
@@ -97,7 +97,7 @@ To configure the export we use the header of the org file
 # -*- mode: snippet -*-
 # name: report
 # uuid:
-# key: projet
+# key: report
 # condition: t
 # --
 #+title: ${1:Titre}
@@ -109,6 +109,7 @@ To configure the export we use the header of the org file
 #+initiateur: ${6:Matthias DAVID}
 #+projet: ${7:Secret project}
 #+dure: ${8:2H}
+#+logo: logo.png
 #+END_SRC
 
 * SCREENSHOT
@@ -119,16 +120,20 @@ To configure the export we use the header of the org file
 
 
 * TODOS
-- [ ] Add: logo
+
 - [ ] Add: English
 - [ ] Fix: Timebox
 - [ ] Fix: Multitoc error
+- [X] Add: logo
 - [X] Ajouter le choix de la Toc par options dans ox-notes
 - [X] Ajouter le tableau de présence en intro
 - [X] Ajouter la function fullwidth
 
 
 * CHANGELOG
+** v0.2
+*** Features
+- ADD: Possibility to put and choose a logo
 ** v0.1 <08.2020>
 *** Features
 - ADD:Layout like 'Tufte'

@@ -4,7 +4,7 @@
 
 #+caption: Export
 #+attr_latex: :width 300px
-[[file:img/ox-notes.gif]]
+[[file:img/ox-report.gif]]
 
 -----
 
@@ -12,14 +12,14 @@
 Si vous utilisez =use-package= :
 
 #+BEGIN_SRC emacs-lisp
-(use-package ox-notes
+(use-package ox-report
   :load-path "~/Dropbox/emacs/lib/ox-notes")
 #+END_SRC
 
 Si vous utilisez Doom Emacs :
 #+BEGIN_SRC emacs-lisp
-(package! ox-notes
-  :recipe (:host gitlab :repo "DarkBuffalo/ox-notes"))
+(package! ox-report
+  :recipe (:host gitlab :repo "DarkBuffalo/ox-report"))
 #+END_SRC
 
 * PRE-REQUIS
@@ -102,16 +102,20 @@ Pour configurer l'export, il est nécessaire d'utiliser l'entetes du fichier Org
 
 
 * TODOS
-- [ ] Add: Un logo c'est sympa
+
 - [ ] Add: Anglais is cool
 - [ ] Fix: La boite a temp dépasse sur les notes de marges
 - [ ] Fix: Erreur latex 'Multitoc'
+- [X] Add: Un logo c'est sympa
 - [X] Ajouter le choix de la Toc par options dans ox-notes
 - [X] Ajouter le tableau de présence en intro
 - [X] Ajouter la function fullwidth
 
 
 * CHANGEMENTS
+** v0.2
+*** Features
+- ADD: Possibilité de mettre et de choisir un logo
 ** v0.1 <08.2020>
 *** Features
 - ADD:Mise en page de style 'Tufte'
