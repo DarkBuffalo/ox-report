@@ -4,7 +4,7 @@
 ;; URL: https://github.com/DarkBuffalo/ox-report
 ;; Version: 0.1
 ;; Keywords: org, report, exporter, meeting, minutes
-;; Package-Requires: ((ox) (cl-lib))
+;; Package-Requires: ((ox-latex) (cl-lib))
 
 ;;; Commentary:
 ;;
