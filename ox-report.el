@@ -7,7 +7,17 @@
 ;; Package-Requires: ((ox) (cl-lib))
 
 ;;; Commentary:
-
+;;
+;; This program is free software: you can redistribute it and/or modify
+;; it under the terms of the GNU General Public License as published by
+;; the Free Software Foundation, either version 3 of the License, or
+;; (at your option) any later version.
+;;
+;; This program is distributed in the hope that it will be useful,
+;; but WITHOUT ANY WARRANTY; without even the implied warranty of
+;; MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+;; GNU General Public License for more details.
+;;
 ;; This is a another exporter for org-mode that translates Org-mode file to
 ;; beautiful PDF file
 ;;
@@ -174,9 +184,9 @@ headsep=1cm ]{geometry}
 %% Standard style for labels, small and bold
 \\newcommand{\\@labeltext}{\\scriptsize}
 
-\\newcommand*{\\@absentlabel}{\\FrenchEnglish{ABSENT}{FRAVÆRENDE}}
+\\newcommand*{\\@absentlabel}{\\FrenchEnglish{ABSENT}{ABSENT}}
 
-\\newcommand*{\\@abstractlabel}{\\FrenchEnglish{ABSTRACT}{SAMMENDRAG}}
+\\newcommand*{\\@abstractlabel}{\\FrenchEnglish{EXTRAIT}{ABSTRACT}}
 %% No star for \\@abstract, it can expand to multiple paragraphs
 \\newcommand{\\@abstract}{Set with \\texttt{\\textbackslash abstract\\{\\}}}
 \\renewcommand*{\\abstract}{\\renewcommand*{\\@abstract}}
@@ -189,13 +199,13 @@ headsep=1cm ]{geometry}
 \\newcommand*{\\@accumulatedlabel}
             {\\FrenchEnglish{Accumulated}{Akkumulerte kostnader}}
 
-\\newcommand*{\\@addresslabel} {\\FrenchEnglish{Address}{Postadresse}}
+\\newcommand*{\\@addresslabel} {\\FrenchEnglish{Addresse}{Address}}
 \\newcommand*{\\@address}{}
 \\newcommand*{\\address}[1]{\\renewcommand{\\@address}{#1}}
 
-\\newcommand*{\\@agreedlabel}{\\FrenchEnglish{AS AGREED}{ETTER AVTALE}}
+\\newcommand*{\\@agreedlabel}{\\FrenchEnglish{AS AGREED}{AS AGREED}}
 
-\\newcommand*{\\@attachmentlabel}{\\FrenchEnglish{ATTACHMENTS}{VEDLEGG}}
+\\newcommand*{\\@attachmentlabel}{\\FrenchEnglish{ATTACHMENTS}{ATTACHMENTS}}
 \\newcommand{\\@attachments}{Set with \\texttt{\\textbackslash attachments\\{\\}}}
 \\newcommand{\\attachments}{\\renewcommand{\\@attachments}}
 \\newcommand*{\\@attachmentpages}
@@ -207,7 +217,7 @@ headsep=1cm ]{geometry}
 
 \\newcommand*{\\@attentionlabel}{\\FrenchEnglish{FOR YOUR ATTENTION}{BEHANDLING}}
 
-\\newcommand*{\\@approvedlabel}{\\FrenchEnglish{APPROVED BY}{GODKJENT AV}}
+\\newcommand*{\\@approvedlabel}{\\FrenchEnglish{APPROUVE PAR}{APPROVED BY}}
 \\newcommand*{\\@approved}{Set with \\texttt{\textbackslash approved\\{\\}}}
 \\newcommand*{\\approved}{\\renewcommand*{\\@approved}}
 
@@ -222,13 +232,13 @@ headsep=1cm ]{geometry}
 \\newcommand*{\\@authorlabel}{\\FrenchEnglish{Auteur(s)}{Author(s)}}
 \\newcommand*{\\@Authorlabel}{\\FrenchEnglish{AUTEUR(S)}{AUTHOR(S)}}
 
-\\newcommand*{\\@checkedlabel}{\\FrenchEnglish{CHECKED BY}{KONTROLLERT AV}}
+\\newcommand*{\\@checkedlabel}{\\FrenchEnglish{VERIFIE PAR}{CHECKED BY}}
 \\newcommand*{\\@checked}{Set with \\texttt{\textbackslash checked\\{\\}}}
 \\newcommand*{\\checked}{\\renewcommand*{\\@checked}}
 
 \\newcommand*{\\@classificationlabel}{\\FrenchEnglish{SECRETAIRE}{GRADERING}}
 
-\\newcommand*{\\@clientlabel}{\\FrenchEnglish{CLIENT(S)}{OPPDRAGSGIVER(E)}}
+\\newcommand*{\\@clientlabel}{\\FrenchEnglish{CLIENT(S)}{CLIENT(S)}}
 \\newcommand*{\\@client}{Set with \\texttt{\\textbackslash client\\{\\}}}
 \\newcommand*{\\client}{\\renewcommand*{\\@client}}
 
@@ -293,7 +303,7 @@ headsep=1cm ]{geometry}
 \\newcommand*{\\@firstexp}{\\texttt{\\textbackslash firstexp\\{\\}}}
 \\newcommand*{\\firstexp}{\\renewcommand*{\\@firstexp}}
 
-\\newcommand*{\\@fromlabel}{\\FrenchEnglish{FROM}{FRA}}
+\\newcommand*{\\@fromlabel}{\\FrenchEnglish{DE}{FROM}}
 
 \\newcommand*{\\@historylabel}{\\FrenchEnglish{Document History}{Historikk}}
 
@@ -313,7 +323,7 @@ headsep=1cm ]{geometry}
 \\newcommand*{\\@ISBN}{Set with \\texttt{\\textbackslash isbn\\{\\}}}
 \\newcommand*{\\isbn}{\\renewcommand*{\\@ISBN}}
 
-\\newcommand*{\\@keywordlabel}{\\FrenchEnglish{KEYWORDS}{EMNEORD}}
+\\newcommand*{\\@keywordlabel}{\\FrenchEnglish{MOTS CLES}{KEYWORDS}}
 %% No star for \\@keywords, it can expand to multiple lines
 \\newcommand{\\@keywords}{Set with \\texttt{\\textbackslash keywords\\{\\}}}
 \\newcommand*{\\keywords}{\\renewcommand*{\\@keywords}}
@@ -326,7 +336,7 @@ headsep=1cm ]{geometry}
 
 \\newcommand*{\\@lastperiodlabel}{\\FrenchEnglish{Last period}{Siste periode}}
 
-\\newcommand*{\\@locationlabel}{\\FrenchEnglish{Location}{Besøksadresse}}
+\\newcommand*{\\@locationlabel}{\\FrenchEnglish{Lieu}{Location}}
 \\newcommand*{\\@location}{}
 \\newcommand*{\\location}[1]{\\renewcommand{\\@location}{#1}}
 
@@ -340,7 +350,7 @@ headsep=1cm ]{geometry}
 \\newcommand*{\\name}{\\def\\fromname}
 \\name{Set with \\texttt{\\textbackslash name\\{\\}}}
 
-\\newcommand*{\\@objectivelabel}{\\FrenchEnglish{OBJECTIVE}{MÅL}}
+\\newcommand*{\\@objectivelabel}{\\FrenchEnglish{OBJECTIVE}{OBJECTIVE}}
 
 \\newcommand*{\\@offernumberlabel}{\\FrenchEnglish{OFFER NUMBER}{TILBUDSNUMMER}}
 \\newcommand*{\\@offernumber}{Set with \\texttt{\\textbackslash offer\\{\\}}}
@@ -374,7 +384,7 @@ headsep=1cm ]{geometry}
 \\newcommand*{\\@participantlabel}{\\FrenchEnglish{PARTICIPANT}{PARTICIPANT}}
 \\newcommand*{\\@participantslabel}{\\FrenchEnglish{PARTICIPANTS}{PARTICIPANTS}}
 
-\\newcommand*{\\@phonelabel}{\\FrenchEnglish{Telephone}{Sentralbord}}
+\\newcommand*{\\@phonelabel}{\\FrenchEnglish{Telephone}{Phone}}
 \\newcommand*{\\@phone}{}
 \\newcommand*{\\phone}[1]{\\renewcommand{\\@phone}{#1}}
 
@@ -385,7 +395,7 @@ headsep=1cm ]{geometry}
 
 \\newcommand*{\\@planlabel}{\\FrenchEnglish{Planned}{Planned}}
 
-\\newcommand*{\\@preparedlabel}{\\FrenchEnglish{PREPARED BY}{PREPARED BY}}
+\\newcommand*{\\@preparedlabel}{\\FrenchEnglish{PREPARE PAR}{PREPARED BY}}
 \\newcommand*{\\@prepared}{Set with \\texttt{\\textbackslash prepared\\{\\}}}
 \\newcommand*{\\prepared}{\\renewcommand*{\\@prepared}}
 
@@ -407,15 +417,15 @@ headsep=1cm ]{geometry}
 \\newcommand*{\\@recipient}{Set with \\texttt{\\textbackslash recipient\\{\\}}}
 \\newcommand*{\\recipient}{\\renewcommand*{\\@recipient}}
 
-\\newcommand*{\\@referencelabel}{\\FrenchEnglish{REFERENCE}{REFERANSE}}
+\\newcommand*{\\@referencelabel}{\\FrenchEnglish{REFERENCE}{REFERENCE}}
 
-\\newcommand*{\\@reportlabel}{\\FrenchEnglish{Report}{Rapport}}
+\\newcommand*{\\@reportlabel}{\\FrenchEnglish{Rapport}{Report}}
 
-\\newcommand*{\\@reportnumberlabel}{\\FrenchEnglish{REPORT NUMBER}{RAPPORTNUMMER}}
+\\newcommand*{\\@reportnumberlabel}{\\FrenchEnglish{RAPPORT N°}{REPORT NUMBER}}
 \\newcommand*{\\@reportnumber}{Set with \\texttt{\\textbackslash reportnumber\\{\\}}}
 \\newcommand*{\\reportnumber}{\\renewcommand*{\\@reportnumber}}
 
-\\newcommand*{\\@responsiblelabel}{\\FrenchEnglish{RESPONSIBLE}{ANSVARLIG}}
+\\newcommand*{\\@responsiblelabel}{\\FrenchEnglish{RESPONSIBLE}{RESPONSIBLE}}
 
 \\newcommand*{\\@schedulelabel}{\\FrenchEnglish{Schedule}{Tidsramme}}
 
@@ -681,7 +691,7 @@ headsep=1cm ]{geometry}
                 (org-open-file (report-export-to-pdf nil s v b))))))))
 
 (defun report-template (contents info)
-  "INFO return complete document string for this export."
+  "INFO are the header data and CONTENTS is the content of the org file and return complete document string for this export."
   (concat
    ;; Time-stamp.
    (and (plist-get info :time-stamp-file)
@@ -882,6 +892,31 @@ Return PDF file's name."
 ;;;###autoload
 (defun report-export-to-pdf-and-open
     (&optional async subtreep visible-only body-only ext-plist)
+  "Export current buffer as a Report (pdf) and open.
+If narrowing is active in the current buffer, only export its
+narrowed part.
+
+If a region is active, export that region.
+
+A non-nil optional argument ASYNC means the process should happen
+asynchronously.  The resulting file should be accessible through
+the `org-export-stack' interface.
+
+When optional argument SUBTREEP is non-nil, export the sub-tree
+at point, extracting information from the headline properties
+first.
+
+When optional argument VISIBLE-ONLY is non-nil, don't export
+contents of hidden elements.
+
+When optional argument BODY-ONLY is non-nil, only write code
+between \"\\begin{letter}\" and \"\\end{letter}\".
+
+EXT-PLIST, when provided, is a property list with external
+parameters overriding Org default settings, but still inferior to
+file-local settings.
+
+Return PDF file's name."
   (interactive)
   (let ((outfile (org-export-output-file-name ".tex" subtreep)))
     (org-export-to-file 'report outfile
