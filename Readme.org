@@ -1,6 +1,8 @@
 #+title:OX-REPORT
 #+author: Matthias David
 
+#+attr_latex: :width 150px
+[[file:img/report.gif]]
 
 #+caption: Export
 #+attr_latex: :width 300px
