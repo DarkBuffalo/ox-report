@@ -2,7 +2,7 @@
 #+author: Matthias David
 
 #+attr_latex: :width 150px
-[[file:img/report.gif]]
+[[file:img/report.png]]
 
 #+caption: Export
 #+attr_latex: :width 300px
