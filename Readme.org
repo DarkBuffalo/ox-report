@@ -88,6 +88,7 @@ To configure the export we use the header of the org file
 #+END_SRC
 
 ** Absent, present or excused
+it is necessary to separate the names by commas for a good formatting
 #+BEGIN_SRC org
 #+absent: C. Robert,T. tartanpion
 #+present: K. Soulet,I. Payet

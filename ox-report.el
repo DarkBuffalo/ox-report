@@ -3,7 +3,7 @@
 ;; Author: Matthias David <matthias@gnu.re>
 ;; URL: https://github.com/DarkBuffalo/ox-report
 ;; Version: 0.2
-;; Package-Requires: ( (emacs "24.4"))
+;; Package-Requires: ((emacs "24.4"))
 ;; Keywords: org, outlines, report, exporter, meeting, minutes
 
 ;;; Commentary:
