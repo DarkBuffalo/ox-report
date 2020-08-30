@@ -669,9 +669,7 @@ headsep=1cm ]{geometry}
 (defgroup org-export-report nil
   "Options specific to Report back-end."
   :tag "Org Report PDF"
-  :group 'ox-report
-  :version "26.1"
-  :package-version '(Org . "8.0"))
+  :group 'ox-report)
 
 
 (org-export-define-derived-backend 'report 'latex
@@ -827,7 +825,7 @@ Export is done in a buffer named \"*ox-report Report Export*\".  It
 will be displayed if `org-export-show-temporary-export-buffer' is
 non-nil."
   (interactive)
-  (let (report-special-contents)
+  (let (ox-report-special-contents)
     (org-export-to-buffer 'report "*Org Report Export*"
       async subtreep visible-only body-only ext-plist
       (lambda () (LaTeX-mode)))))
@@ -865,7 +863,7 @@ directory.
 Return output file's name."
   (interactive)
   (let ((outfile (org-export-output-file-name ".tex" subtreep))
-        (report-special-contents))
+        (ox-report-special-contents))
     (org-export-to-file 'report outfile
       async subtreep visible-only body-only ext-plist)))
 
@@ -900,7 +898,7 @@ file-local settings.
 Return PDF file's name."
   (interactive)
   (let ((file (org-export-output-file-name ".tex" subtreep))
-	(report-special-contents))
+	(ox-report-special-contents))
     (org-export-to-file 'report file
       async subtreep visible-only body-only ext-plist
       (lambda (file) (org-latex-compile file)))))
