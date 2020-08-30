@@ -690,16 +690,16 @@ headsep=1cm ]{geometry}
     (:latex-hyperref-p nil "texht" org-latex-with-hyperref t)
     (:resume "resume" nil nil)
     (:logo "LOGO" nil " "))
-  :translate-alist '((template . report-template))
+  :translate-alist '((template . ox-report-template))
   :menu-entry
   '(?r "Export to Report layout"
-       ((?L "As LaTeX buffer" report-export-as-latex)
-        (?l "As LaTeX file" report-export-to-latex)
-        (?p "As PDF file" report-export-to-pdf)
+       ((?L "As LaTeX buffer" ox-report-export-as-latex)
+        (?l "As LaTeX file" ox-report-export-to-latex)
+        (?p "As PDF file" ox-report-export-to-pdf)
         (?o "As PDF and Open"
             (lambda (a s v b)
-              (if a (report-export-to-pdf t s v b)
-                (org-open-file (report-export-to-pdf nil s v b))))))))
+              (if a (ox-report-export-to-pdf t s v b)
+                (org-open-file (ox-report-export-to-pdf nil s v b))))))))
 
 (defun ox-report-template (contents info)
   "INFO are the header data and CONTENTS is the content of the org file and return complete document string for this export."
