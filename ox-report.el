@@ -1,9 +1,9 @@
-;;; package --- Export your org file to minutes report PDF file
+;;; ox-report.el --- Export your org file to minutes report PDF file -*- lexical-binding: t -*-
 
 ;; Author: Matthias David <matthias@gnu.re>
 ;; URL: https://github.com/DarkBuffalo/ox-report
-;; Version: 0.1
-;; Keywords: org, report, exporter, meeting, minutes
+;; Version: 0.2
+;; Package-Requires: ( (emacs "24.4"))
 
 ;;; Commentary:
 ;;
@@ -689,8 +689,7 @@ headsep=1cm ]{geometry}
     (:with-toc nil "toc" 1 )
     (:latex-hyperref-p nil "texht" org-latex-with-hyperref t)
     (:resume "resume" nil nil)
-    (:logo "LOGO" nil " ")
-    )
+    (:logo "LOGO" nil " "))
   :translate-alist '((template . report-template))
   :menu-entry
   '(?r "Export to Report layout"
@@ -702,7 +701,7 @@ headsep=1cm ]{geometry}
               (if a (report-export-to-pdf t s v b)
                 (org-open-file (report-export-to-pdf nil s v b))))))))
 
-(defun report-template (contents info)
+(defun ox-report-template (contents info)
   "INFO are the header data and CONTENTS is the content of the org file and return complete document string for this export."
   (concat
    ;; Time-stamp.
@@ -798,7 +797,7 @@ headsep=1cm ]{geometry}
 "))))
 
 ;;;###autoload
-(defun report-export-as-latex
+(defun ox-report-export-as-latex
     (&optional async subtreep visible-only body-only ext-plist)
   "Export current buffer as a Report latex.
 
@@ -834,7 +833,7 @@ non-nil."
       (lambda () (LaTeX-mode)))))
 
 ;;;###autoload
-(defun report-export-to-latex
+(defun ox-report-export-to-latex
     (&optional async subtreep visible-only body-only ext-plist)
   "Export current buffer as a Report (tex).
 
@@ -871,7 +870,7 @@ Return output file's name."
       async subtreep visible-only body-only ext-plist)))
 
 ;;;###autoload
-(defun report-export-to-pdf
+(defun ox-report-export-to-pdf
     (&optional async subtreep visible-only body-only ext-plist)
   "Export current buffer as a Report (pdf).
 
@@ -907,7 +906,7 @@ Return PDF file's name."
       (lambda (file) (org-latex-compile file)))))
 
 ;;;###autoload
-(defun report-export-to-pdf-and-open
+(defun ox-report-export-to-pdf-and-open
     (&optional async subtreep visible-only body-only ext-plist)
   "Export current buffer as a Report (pdf) and open.
 If narrowing is active in the current buffer, only export its
@@ -938,10 +937,7 @@ Return PDF file's name."
   (let ((outfile (org-export-output-file-name ".tex" subtreep)))
     (org-export-to-file 'report outfile
       async subtreep visible-only body-only ext-plist
-      (lambda (file) (org-latex-compile file))))
-
-
-  )
+      (lambda (file) (org-latex-compile file)))))
 
 (provide 'ox-report)
-;;; ox-report ends here
+;;; ox-report.el ends here
