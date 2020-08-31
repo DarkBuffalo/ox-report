@@ -578,7 +578,7 @@ headsep=1cm ]{geometry}
    \\@rlogo
   \\end{minipage}
 
-  \\vspace{4ex}%%
+  \\vspace{1ex}%%
   \\noindent%%
   \\@separator\\\\
   \\rowcolors{4}{}{sinteflightgray}
