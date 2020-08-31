@@ -692,8 +692,7 @@ headsep=1cm ]{geometry}
   :translate-alist '((template . ox-report-template))
   :menu-entry
   '(?r "Export to Report layout"
-       ((?L "As LaTeX buffer" ox-report-export-as-latex)
-        (?l "As LaTeX file" ox-report-export-to-latex)
+       ((?l "As LaTeX file" ox-report-export-to-latex)
         (?p "As PDF file" ox-report-export-to-pdf)
         (?o "As PDF and Open"
             (lambda (a s v b)
@@ -730,11 +729,8 @@ headsep=1cm ]{geometry}
         info)))
 
    ;; Now the core content
-   (let ((toc (plist-get info :with-toc))
-         (from (plist-get info :from))
-         (subject (plist-get info :subject))
-         (fromname (plist-get info :fromname))
-         (cc (plist-get info :cc)))
+   (let ((auteur (plist-get info :author))
+         (titre (plist-get info :title)))
      (concat "
 
 
@@ -742,8 +738,8 @@ headsep=1cm ]{geometry}
 "(when (plist-get info :org-latex-with-hyperref)
    (format "{%s}" (plist-get info :org-latex-with-hyperref) ))"
 
-\\author{"(org-export-data (plist-get info :author) info)"}
-\\title{"(org-export-data (plist-get info :title) info)"}
+\\author{"(org-export-data auteur info)"}
+\\title{"(org-export-data titre info)"}
 
 \\wheremeeting{"(when (plist-get info :ou)
    (format "%s" (plist-get info :ou) )) "}
@@ -795,41 +791,6 @@ headsep=1cm ]{geometry}
 \\end{document}
 "))))
 
-;;;###autoload
-(defun ox-report-export-as-latex
-    (&optional async subtreep visible-only body-only ext-plist)
-  "Export current buffer as a Report latex.
-
-If narrowing is active in the current buffer, only export its
-narrowed part.
-
-If a region is active, export that region.
-
-A non-nil optional argument ASYNC means the process should happen
-asynchronously.  The resulting buffer should be accessible
-through the `org-export-stack' interface.
-
-When optional argument SUBTREEP is non-nil, export the sub-tree
-at point, extracting information from the headline properties
-first.
-
-When optional argument VISIBLE-ONLY is non-nil, don't export
-contents of hidden elements.
-
-When optional argument BODY-ONLY is non-nil, only write content.
-
-EXT-PLIST, when provided, is a proeprty list with external
-parameters overriding Org default settings, but still inferior to
-file-local settings.
-
-Export is done in a buffer named \"*ox-report Report Export*\".  It
-will be displayed if `org-export-show-temporary-export-buffer' is
-non-nil."
-  (interactive)
-  (let (ox-report-special-contents)
-    (org-export-to-buffer 'report "*Org Report Export*"
-      async subtreep visible-only body-only ext-plist
-      (lambda () (LaTeX-mode)))))
 
 ;;;###autoload
 (defun ox-report-export-to-latex
@@ -863,8 +824,7 @@ directory.
 
 Return output file's name."
   (interactive)
-  (let ((outfile (org-export-output-file-name ".tex" subtreep))
-        (ox-report-special-contents))
+  (let ((outfile (org-export-output-file-name ".tex" subtreep)))
     (org-export-to-file 'report outfile
       async subtreep visible-only body-only ext-plist)))
 
@@ -898,8 +858,7 @@ file-local settings.
 
 Return PDF file's name."
   (interactive)
-  (let ((file (org-export-output-file-name ".tex" subtreep))
-	(ox-report-special-contents))
+  (let ((file (org-export-output-file-name ".tex" subtreep)))
     (org-export-to-file 'report file
       async subtreep visible-only body-only ext-plist
       (lambda (file) (org-latex-compile file)))))
