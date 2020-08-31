@@ -1,5 +1,6 @@
 ;;; ox-report.el --- Export your org file to minutes report PDF file -*- lexical-binding: t -*-
 
+;; Copyright (C) 2020  Matthias David
 ;; Author: Matthias David <matthias@gnu.re>
 ;; URL: https://github.com/DarkBuffalo/ox-report
 ;; Version: 0.2
@@ -466,45 +467,6 @@ headsep=1cm ]{geometry}
 \\newcommand*{\\@testobject}{Set with \\texttt{\\textbackslash testobject\\{\\}}}
 \\newcommand*{\\testobject}{\\renewcommand*{\\@testobject}}
 
-\\newcommand*{\\@testprogramlabel}{\\FrenchEnglish{TEST PROGRAM}{PRØVEPROGRAM}}
-\\newcommand*{\\@testprogram}{\\texttt{\\textbackslash testprogram\\{\\}}}
-\\newcommand*{\\testprogram}{\\renewcommand*{\\@testprogram}}
-
-\\newcommand*{\\@timelabel}{\\FrenchEnglish{Time (period/year)}{Tid (periode/år)}}
-
-%% No star for \\@titlefigure, it can expand to multiple lines
-\\newcommand{\\@titlefigure}{Set with \\texttt{\\textbackslash titlefigure\\{\\}}}
-\\newcommand*{\\titlefigure}{\\renewcommand*{\\@titlefigure}}
-
-\\newcommand*{\\@totalexplabel}{\\FrenchEnglish{TOTAL PLANNED\newline EXPENDITURE}
-                                           {ØKONOMISK RAMME\newline TOTAL}}
-\\newcommand*{\\@totalexp}{\\texttt{\\textbackslash totalexp\\{\\}}}
-\\newcommand*{\\totalexp}{\\renewcommand*{\\@totalexp}}
-
-\\newcommand*{\\@totalhrs}{\\texttt{\\textbackslash totalhrs\\{\\}}}
-\\newcommand*{\\totalhrs}{\\renewcommand*{\\@totalhrs}}
-
-\\newcommand*{\\@totallabel}{\\FrenchEnglish{Total}{Total}}
-
-\\newcommand*{\\@unitlabel}{\\FrenchEnglish{SINTEF UNIT}{SINTEF-ENHET}}
-
-\\newcommand*{\\@validitylabel}{\\FrenchEnglish{VALID UNTIL}{GYLDIG TIL}}
-\\newcommand*{\\@validity}{Set with \\texttt{\\textbackslash validity\\{\\}}}
-\\newcommand*{\\validity}{\\renewcommand*{\\@validity}}
-
-\\newcommand*{\\@VATlabel}{\\FrenchEnglish{Enterprise Number}{Foretaksregister}}
-\\newcommand*{\\@VAT}{}
-\\newcommand*{\\vat}[1]{\\renewcommand{\\@VAT}{#1}}
-
-\\newcommand*{\\@versionlabel}{\\FrenchEnglish{VERSION}{VERSJON}}
-\\newcommand*{\\@versiondescriptionlabel}
-            {\\FrenchEnglish{VERSION DESCRIPTION}{VERSJONSBESKRIVELSE}}
-\\newcommand*{\\@version}{Set with \\texttt{\\textbackslash version\\{\\}}}
-\\newcommand*{\\version}{\\renewcommand*{\\@version}}
-
-\\newcommand*{\\@wageslabel}{\\FrenchEnglish{Of which wages}{Herav timekost}}
-\\newcommand*{\\@wages}{\\texttt{\\textbackslash wages\\{\\}}}
-\\newcommand*{\\wages}{\\renewcommand*{\\@wages}}
 
 \\newcommand*{\\@wheremeeting}{Set with \\texttt{\\textbackslash wheremeeting\\{\\}}}
 \\newcommand*{\\wheremeeting}{\\renewcommand*{\\@wheremeeting}}
@@ -512,9 +474,6 @@ headsep=1cm ]{geometry}
 \\newcommand*{\\@whenmeeting}{Set with \\texttt{\\textbackslash whenmeeting\\{\\}}}
 \\newcommand*{\\whenmeeting}{\\renewcommand*{\\@whenmeeting}}
 
-\\newcommand*{\\@yourreflabel}{\\FrenchEnglish{Your reference}{Deres referanse}}
-\\newcommand*{\\@yourref}{Set with \\texttt{\\textbackslash yourref\\{\\}}}
-\\newcommand*{\\yourref}{\\renewcommand*{\\@yourref}}
 
 
 %% MINUTES %<------------------------------------------------------->%
