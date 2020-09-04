@@ -45,82 +45,62 @@
 
 (add-to-list 'org-latex-classes
              '("report"                          ;class-name
-               "\\documentclass[paper=a4,11pt,headinclude,footinclude,BCOR=5mm]{scrartcl}
+               "\\documentclass[twoside, 10pt]{article}
+
+\\usepackage[defaultfam,light,tabular,lining]{montserrat} %% Option 'defaultfam'
+%% only if the base font of the document is to be sans serig
+\\renewcommand*\\oldstylenums[1]{{\\fontfamily{Montserrat-TOsF}\\selectfont #1}}
+
 \\RequirePackage[utf8]{inputenc}
 \\RequirePackage[T1]{fontenc}
+
 \\RequirePackage{setspace}              %%pour le titre
 \\RequirePackage{graphicx}	        %% gestion des images
 \\RequirePackage[dvipsnames,table]{xcolor}	%% gestion des couleurs
 \\RequirePackage{array}		%% gestion améliorée des tableaux
 \\RequirePackage{calc}		        %% syntaxe naturelle pour les calculs
-\\RequirePackage{titling}	        %% pour le titre
 \\RequirePackage{enumitem}	        %% pour les listes numérotées
 \\RequirePackage[footnote]{snotez}	%% placer les notes de pied de page sur le coté
-
+\\RequirePackage{dashrule}
+\\RequirePackage{microtype,textcase}
+\\RequirePackage{titlesec}
+\\RequirePackage{booktabs}
 
 \\RequirePackage{amsmath,
 	amssymb,
 	amsthm} 			%% For including math equations, theorems, symbols, etc
 \\RequirePackage[toc]{multitoc}
-%%\\RequirePackage{fontawesome5}
 
-
-\\RequirePackage[
-eulerchapternumbers,
-  beramono,         %% Use the Bera Mono font for monospaced text (\texttt)
-  eulermath,        %% Use the Euler font for mathematics
-  pdfspacing,       %% Makes use of pdftex’ letter spacing capabilities via the microtype package
-  dottedtoc         %% Dotted lines leading to the page numbers in the table of contents
-]{classicthesis}    %% The layout is based on the Classic Thesis style
-
-\\RequirePackage{arsclassica} %% Modifies the Classic Thesis package
-\\RequirePackage[top=1cm,
-bottom=2.5cm,
-left=30pt,
-textwidth=417pt,
-headheight=14pt,
-marginparsep=20pt,
-marginparwidth=100pt,
-footskip=0.5cm,
-headsep=1cm ]{geometry}
-
-
-%%Commande perso
-\\RequirePackage[many]{tcolorbox}
-%% LBOX  TODO: a ameliorer pour le passage en parametre du titre---
-\\tcbuselibrary{skins,breakable}
-\\newtcolorbox{lbox}[1][]{
-	colback=white,
-  left=0.5ex,
-  top=0pt,
-  arc=0pt,
-  outer arc=0pt,
-  enlarge left by=1.3in,
-  enlarge right by=-\\dimexpr1.5in+\\parindent\\relax,
-  right=\\dimexpr1.1in+\\parindent\\relax,
-  leftrule=1pt,
-  rightrule=0pt,
-  toprule=0pt,
-  bottomrule=0pt,
-  breakable,
-  nobeforeafter,
-  enhanced jigsaw,
-  overlay={
-     \\node[anchor=north east,inner ysep=0pt,align=right,text width=1.5in]
-     at ([yshift=-0.55ex]frame.north west) {\\hfill#1};
-  },
-    	before=\\vskip2\\itemsep\\noindent
-}%% END LBOX
+\\RequirePackage[a4paper,left=15mm,
+top=15mm,headsep=2\\baselineskip,
+textwidth=132mm,marginparsep=8mm,
+marginparwidth=40mm,textheight=58\\baselineskip,
+headheight=\\baselineskip]{geometry}
 
 
 
 %%----------------------------------------------------------------------------------------
 %%	HEADERS
 %%----------------------------------------------------------------------------------------
+\\makeatletter
 
-\\renewcommand{\\sectionmark}[1]{\\markright{\\spacedlowsmallcaps{#1}}} %% The header for all pages (oneside) or for even pages (twoside)
-%%\\renewcommand{\\subsectionmark}[1]{\\markright{\\thesubsection~#1}} %% Uncomment when using the twoside option - this modifies the header on odd pages
-%%\\lehead{\\mbox{\\llap{\\small\\thepage\\kern1em\\color{halfgray} \\vline}\\color{halfgray}\\hspace{0.5em}\\rightmark\\hfil}} %% The header style
+\\titleformat{\\section}{\\Large\\bfseries\\itshape}{%%
+	\\hspace*{-3mm}\\fontsize{3ex}{3.6ex}\\sectionNumbers\\selectfont\\color{mdgreen}%%
+	\\raisebox{-1mm}{\\thesection}%%
+}{-3mm}{}{}
+
+\\titleformat{\\subsection}{\\large\\bfseries\\itshape}{%%
+	\\hspace*{-3mm}\\fontsize{3ex}{3.6ex}\\subsectionNumbers\\selectfont\\color{mdgreen}%%
+	\\raisebox{-1mm}{\\thesubsection}%%
+}{-3mm}{}{}
+\\titleformat*{\\subsubsection}{\\normalfont\\bfseries\\itshape}
+
+%%Titling spacing: left before after [right]
+\\titlespacing*{\\section}{0mm}{3mm}{0mm}
+\\titlespacing*{name=\\section, numberless}{0mm}{3mm}{0mm}
+\\titlespacing*{\\subsection}{0mm}{2mm}{0mm}
+\\titlespacing*{\\subsubsection}{0mm}{2mm}{0mm}
+
 
 \\PassOptionsToPackage{protrusion=true,final}{microtype}
 
@@ -128,8 +108,6 @@ headsep=1cm ]{geometry}
     {\\skip\\noindent\\begin{minipage}
     {\\textwidth+\\marginparwidth+\\marginparsep}\\skip\\smallskip}
     {\\end{minipage}\\vspace{.1in}}
-
-\\makeatletter
 
 
 %% COLOR %<--------------------------------------------------------->%
@@ -169,10 +147,9 @@ headsep=1cm ]{geometry}
 }
 
 
-
 %% LABEL %<-------------------------------------------------------->%
 %% Standard style for labels, small and bold
-\\newcommand{\\@labeltext}{\\scriptsize}
+\\newcommand{\\@labeltext}{\\large\\scshape}
 
 \\newcommand*{\\@absentlabel}{\\FrenchEnglish{ABSENT}{ABSENT}}
 
@@ -266,18 +243,7 @@ headsep=1cm ]{geometry}
 \\newcommand*{\\@email}{}
 \\newcommand*{\\email}[1]{\\renewcommand{\\@email}{#1}}
 
-\\newcommand*{\\@enclosurelabel}{\\FrenchEnglish{ENCLOSURE}{BILAG}}
 
-\\newcommand*{\\@expenditurelabel}{\\FrenchEnglish{EXPENDITURE}{MEDGÅTTE KOSTNADER}}
-\\newcommand*{\\@expshortlabel}{\\FrenchEnglish{Expenditure}{Kostnader}}
-
-\\newcommand*{\\@faxlabel}{\\FrenchEnglish{Telefax}{Telefaks}}
-\\newcommand*{\\@fax}{}
-\\newcommand*{\\fax}[1]{\\renewcommand{\\@fax}{#1}}
-
-\\newcommand*{\\@faxnumberlabel}{\\FrenchEnglish{FAX NUMBER}{TELEFAKSNUMMER}}
-\\newcommand*{\\@faxnumber}{Set with \\texttt{\\textbackslash faxnumber\\{\\}}}
-\\newcommand*{\\faxnumber}{\\renewcommand*{\\@faxnumber}}
 
 \\newcommand*{\\@firstexplabel}
             {\\FrenchEnglish{PLANNED EXPENDITURE\newline
@@ -290,7 +256,7 @@ headsep=1cm ]{geometry}
 
 \\newcommand*{\\@historylabel}{\\FrenchEnglish{Document History}{Historikk}}
 
-\\newcommand*{\\@excusedlabel}{\\FrenchEnglish{EXCUSE}{EXCUSE}}
+\\newcommand*{\\@excusedlabel}{\\FrenchEnglish{EXCUSE}{EXCUSED}}
 
 \\newcommand*{\\@durationlabel}{\\FrenchEnglish{DUREE}{DURATION}}
 \\newcommand*{\\@duration}{Set with \\texttt{\\textbackslash duration\\{\\}}}
@@ -454,15 +420,12 @@ headsep=1cm ]{geometry}
 \\newcommand*{\\whenmeeting}{\\renewcommand*{\\@whenmeeting}}
 
 
-
 %% MINUTES %<------------------------------------------------------->%
 
 %%\\DeclareOption*{\\PassOptionsToClass{\\CurrentOption}{sintefdoc}}
 \\ProcessOptions\\relax
 
 \\PassOptionsToPackage{table}{xcolor}
-%%\\LoadClass{sintefdoc}
-
 
 \\renewcommand*{\\@authorlabel}{\\FrenchEnglish{ECRIT PAR}{WRITTEN BY}}
 
@@ -576,8 +539,8 @@ headsep=1cm ]{geometry}
   \\rowcolors{1}{}{} %% Back to normal
   \\@separator\\\\
   \\begin{minipage}{0.45\\textwidth}
-    \\@labeltext \\@projectlabel\\\\
-    \\@project
+    \\hspace*{\\tabcolsep}\\@labeltext \\@projectlabel\\\\
+    \\hspace*{\\tabcolsep}\\@project
   \\end{minipage}
   \\hfill
   \\begin{minipage}{0.3\\textwidth}
