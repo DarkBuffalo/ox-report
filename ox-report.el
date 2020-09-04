@@ -61,7 +61,6 @@
 \\RequirePackage{calc}		        %% syntaxe naturelle pour les calculs
 \\RequirePackage{enumitem}	        %% pour les listes numérotées
 \\RequirePackage[footnote]{snotez}	%% placer les notes de pied de page sur le coté
-\\RequirePackage{dashrule}
 \\RequirePackage{microtype,textcase}
 \\RequirePackage{titlesec}
 \\RequirePackage{booktabs}

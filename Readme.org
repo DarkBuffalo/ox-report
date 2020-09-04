@@ -4,9 +4,10 @@
 #+attr_latex: :width 150px
 [[file:img/report.png]]
 
-#+caption: Export
+#+caption: Header of pdf
 #+attr_latex: :width 300px
-[[file:img/ox-report.gif]]
+[[file:img/header.png]]
+
 
 -----
 
@@ -28,6 +29,7 @@ If you use Doom Emacs
 ** Linux
 + Texlive :: =sudo apt install texlive texlive-extra texlive-fonts-extra=
 + Latex package
+  - montserrat
   - titling
   - enumitem
   - snotez
@@ -35,13 +37,9 @@ If you use Doom Emacs
   - pgf
   - marginnote
   - xpatch
-  - classicthesis
-  - bera
-  - eulervm
   - mparhack
   - titlesec
   - tocloft ??
-  - arsclassica
   - tcolorbox
   - environ
   - trimspaces
@@ -51,9 +49,7 @@ If you use Doom Emacs
   - amsmath
   - capt-of
   - bigfoot
-  - iwona
   - babel
-  - babel-french
 
 * USAGE
 - =C-c C-e r o= :: Export as PDF and Open
@@ -124,20 +120,6 @@ or
 #+logo: logo.png
 #+END_SRC
 
-* SCREENSHOT
-
-#+caption: Header of pdf
-#+attr_latex: :width 300px
-[[file:img/header.png]]
-
-
-* TODOS
-
-- [X] Add: English
-- [X] Add: logo
-- [X] Ajouter le choix de la Toc par options dans ox-notes
-- [X] Ajouter le tableau de présence en intro
-- [X] Ajouter la function fullwidth
 
 
 * CHANGELOG
