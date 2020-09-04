@@ -95,6 +95,15 @@ it is necessary to separate the names by commas for a good formatting
 #+excuse:Sophie Fonsec,Karine Soulet
 #+END_SRC
 
+** Language
+#+BEGIN_SRC emacs-lisp
+#+language: fr
+#+END_SRC
+or
+#+BEGIN_SRC emacs-lisp
+#+language: en
+#+END_SRC
+
 ** Use Yasnippet
 #+BEGIN_SRC org
 # -*- mode: snippet -*-
@@ -124,9 +133,7 @@ it is necessary to separate the names by commas for a good formatting
 
 * TODOS
 
-- [ ] Add: English
-- [ ] Fix: Timebox
-- [ ] Fix: Multitoc error
+- [X] Add: English
 - [X] Add: logo
 - [X] Ajouter le choix de la Toc par options dans ox-notes
 - [X] Ajouter le tableau de présence en intro
@@ -136,6 +143,9 @@ it is necessary to separate the names by commas for a good formatting
 * CHANGELOG
 ** v0.2
 *** Features
+- CHG: Typography
+- CHG: Template to article (simplified)
+- ADD: English language
 - ADD: Possibility to put and choose a logo
 ** v0.1 <08.2020>
 *** Features

@@ -508,7 +508,7 @@ headheight=\\baselineskip]{geometry}
   \\noindent%%
   \\begin{minipage}[b]{0.7\\textwidth}
     \\setlength{\\parskip}{2ex}%%
-    \\Huge \\@title
+    \\huge\\textbf\\@title
 
     %% ~ ensures \\ does not crash when \@wheremeeting is empty
     \\Large \\@wheremeeting~\\\\\\@whenmeeting
