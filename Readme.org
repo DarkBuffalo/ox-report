@@ -126,7 +126,7 @@ or
 ** v0.2
 *** Features
 - CHG: Typography
-  #+caption: subtitle
+  #+attr_latex: :width 150px
   [[file:img/titre.png]]
 - CHG: Template to article (simplified)
 - ADD: English language
