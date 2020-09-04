@@ -40,13 +40,14 @@
 (require 'ox)
 (require 'cl-lib)
 
+(add-to-list 'org-latex-packages-alist
+             '("AUTO" "babel" t ("pdflatex")))
 
 (add-to-list 'org-latex-classes
              '("report"                          ;class-name
                "\\documentclass[paper=a4,11pt,headinclude,footinclude,BCOR=5mm]{scrartcl}
 \\RequirePackage[utf8]{inputenc}
 \\RequirePackage[T1]{fontenc}
-\\RequirePackage[french]{babel}
 \\RequirePackage{setspace}              %%pour le titre
 \\RequirePackage{graphicx}	        %% gestion des images
 \\RequirePackage[dvipsnames,table]{xcolor}	%% gestion des couleurs
@@ -119,7 +120,7 @@ headsep=1cm ]{geometry}
 
 \\renewcommand{\\sectionmark}[1]{\\markright{\\spacedlowsmallcaps{#1}}} %% The header for all pages (oneside) or for even pages (twoside)
 %%\\renewcommand{\\subsectionmark}[1]{\\markright{\\thesubsection~#1}} %% Uncomment when using the twoside option - this modifies the header on odd pages
-\\lehead{\\mbox{\\llap{\\small\\thepage\\kern1em\\color{halfgray} \\vline}\\color{halfgray}\\hspace{0.5em}\\rightmark\\hfil}} %% The header style
+%%\\lehead{\\mbox{\\llap{\\small\\thepage\\kern1em\\color{halfgray} \\vline}\\color{halfgray}\\hspace{0.5em}\\rightmark\\hfil}} %% The header style
 
 \\PassOptionsToPackage{protrusion=true,final}{microtype}
 
@@ -129,8 +130,6 @@ headsep=1cm ]{geometry}
     {\\end{minipage}\\vspace{.1in}}
 
 \\makeatletter
-
-
 
 
 %% COLOR %<--------------------------------------------------------->%
@@ -378,7 +377,7 @@ headsep=1cm ]{geometry}
 \\newcommand*{\\@ourref}{Set with \\texttt{\\textbackslash ourref\\{\\}}}
 \\newcommand*{\\ourref}{\\renewcommand*{\\@ourref}}
 
-\\newcommand*{\\@pageslabel}
+\\Newcommand*{\\@pageslabel}
             {\\FrenchEnglish{NUMBER OF PAGES AND ATTACHMENTS}
                           {ANTALL SIDER OG VEDLEGG}}
 
