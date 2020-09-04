@@ -1,15 +1,18 @@
 #+title:OX-REPORT
 #+author: Matthias David
 
+#+attr_latex: :width 150px
+[[file:img/report.png]]
 
-#+caption: Export
+#+caption: Header of pdf
 #+attr_latex: :width 300px
-[[file:img/ox-report.gif]]
+[[file:img/header.png]]
+
 
 -----
 
 * INSTALLATION
-Si vous utilisez =use-package= :
+Si vous utilisez =use-package= , vous pouvez utiliser le code suivant:
 
 #+BEGIN_SRC emacs-lisp
 (use-package ox-report
@@ -26,6 +29,7 @@ Si vous utilisez Doom Emacs :
 ** Linux
 + Texlive :: =sudo apt install texlive texlive-extra texlive-fonts-extra=
 + Les paquets LaTeX
+  - montserrat
   - titling
   - enumitem
   - snotez
@@ -33,13 +37,9 @@ Si vous utilisez Doom Emacs :
   - pgf
   - marginnote
   - xpatch
-  - classicthesis
-  - bera
-  - eulervm
   - mparhack
   - titlesec
   - tocloft ??
-  - arsclassica
   - tcolorbox
   - environ
   - trimspaces
@@ -49,9 +49,7 @@ Si vous utilisez Doom Emacs :
   - amsmath
   - capt-of
   - bigfoot
-  - iwona
   - babel
-  - babel-french
 
 * USAGE
 - =C-c C-e r o= :: Exporter au format PDF puis Ouvrir
@@ -93,31 +91,45 @@ Pour configurer l'export, il est nécessaire d'utiliser l'entetes du fichier Org
 #+excuse:Sophie Fonsec,Karine Soulet
 #+END_SRC
 
+** Langage
+Il est possible de choisir le langage avec le code suivant
+#+BEGIN_SRC emacs-lisp
+#+language: fr
+#+END_SRC
+ou
+#+BEGIN_SRC emacs-lisp
+#+language: en
+#+END_SRC
 
-* CAPTURE D'ECRAN
-
-#+caption: Header of pdf
-#+attr_latex: :width 300px
-[[file:img/header.png]]
-
-
-* TODOS
-
-- [ ] Add: Anglais is cool
-- [ ] Fix: La boite a temp dépasse sur les notes de marges
-- [ ] Fix: Erreur latex 'Multitoc'
-- [X] Add: Un logo c'est sympa
-- [X] Ajouter le choix de la Toc par options dans ox-notes
-- [X] Ajouter le tableau de présence en intro
-- [X] Ajouter la function fullwidth
-
+** Utiliser Yasnippet
+#+BEGIN_SRC org
+# -*- mode: snippet -*-
+# name: report
+# uuid:
+# key: report
+# condition: t
+# --
+#+title: ${1:Titre}
+#+author: ${2:Auteur}
+#+options: toc:nil
+#+ou: ${3:Ou}
+#+quand: ${4:Date}
+#+present: ${5:Sophie Fonsec}
+#+initiateur: ${6:Matthias DAVID}
+#+projet: ${7:Secret project}
+#+dure: ${8:2H}
+#+logo: logo.png
+#+END_SRC
 
 * CHANGEMENTS
 ** v0.2
-*** Features
+*** Nouveautés
+- CHG: Typographie moderne
+- CHG: Utilisation de la classe article (simplification)
+- ADD: langage Anglais
 - ADD: Possibilité de mettre et de choisir un logo
 ** v0.1 <08.2020>
-*** Features
+*** Nouveautés
 - ADD:Mise en page de style 'Tufte'
 - ADD:Table des matieres sur deux colonnes
 - ADD:Les notes de marge remplace les notes de pied de pages (Style Tufte)

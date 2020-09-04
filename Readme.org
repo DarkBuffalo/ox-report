@@ -126,6 +126,9 @@ or
 ** v0.2
 *** Features
 - CHG: Typography
+  #+caption: subtitle
+  [[file:img/titre.png][titre]]
+
 - CHG: Template to article (simplified)
 - ADD: English language
 - ADD: Possibility to put and choose a logo
