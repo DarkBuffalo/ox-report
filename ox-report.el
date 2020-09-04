@@ -136,46 +136,36 @@ headsep=1cm ]{geometry}
 \\RequirePackage{xcolor}
 
 %% Main colour
-\\definecolor{sintefblue}{HTML}{003C65}
+\\definecolor{mdblue}{HTML}{003C65}
 
 %% Contrast colours
-\\definecolor{sintefcyan}{HTML}{22A7E5}
-\\definecolor{sintefmagenta}{HTML}{EC008C}
-\\definecolor{sintefgreen}{HTML}{A4C21F}
-\\definecolor{sintefyellow}{HTML}{F7E918}
+\\definecolor{mdcyan}{HTML}{22A7E5}
+\\definecolor{mdmagenta}{HTML}{EC008C}
+\\definecolor{mdgreen}{HTML}{A4C21F}
+\\definecolor{mdyellow}{HTML}{F7E918}
 
 %% Additional colours
-\\definecolor{sintefgrey}{HTML}{A19589}
-\\colorlet{sintefgray}{sintefgrey}
-\\definecolor{sinteflightgrey}{HTML}{D8D0C7}
-\\colorlet{sinteflightgray}{sinteflightgrey}
+\\definecolor{mdgrey}{HTML}{A19589}
+\\colorlet{mdgray}{mdgrey}
+\\definecolor{mdlightgrey}{HTML}{D8D0C7}
+\\colorlet{mdlightgray}{mdlightgrey}
 
 
 %% DOC %<----------------------------------------------------------->%
 
-% Whether the language is English;
-% defaults to true
-\\newbool{francais}
-\\booltrue{francais}
-
-%% Override and use FR instead of FR English if Babel is loaded
-\\DeclareOption{francais}  %%{\\PassOptionsToPackage{french}{babel,datetime2}}
-%%\\DeclareOption{english}    {\\boolfalse{english}}
-%%\\DeclareOption{digital}  {\\booltrue{digitalsignature}}
-%%\\DeclareOption{manual}   {\\boolfalse{digitalsignature}}
-%%\\DeclareOption{twocolumn}{\\OptionNotUsed}
-%%\\DeclareOption*{\\PassOptionsToClass{\\CurrentOption}{scrartcl}}
 \\ProcessOptions\\relax
 
-%% Command to provide alternative translations in English and Norwegian
-\\newcommand{\\FrenchEnglish}[2]{\\ifbool{francais}{#1}{#2}}
+%% Command to provide alternative translations in French and English
+\\newcommand{\\FrenchEnglish}[2]{
+   \\iflanguage{french}{#1}{}
+   \\iflanguage{english}{#2}{}}
 
 %% This} separating line is used across several documents,
 \\newcommand{\\@separator}{%%
  %% To make sure we have spacing on both sides, make an invisible rule, 2X tall
   \\rule{0ex}{2ex}%%
    %% Place the dashed rule 1X high
-  \\textcolor{sintefgray}{\\rule[1ex]{\\textwidth}{0.25pt}}%%
+  \\textcolor{mdgray}{\\rule[1ex]{\\textwidth}{0.25pt}}%%
 }
 
 
@@ -191,13 +181,6 @@ headsep=1cm ]{geometry}
 \\newcommand{\\@abstract}{Set with \\texttt{\\textbackslash abstract\\{\\}}}
 \\renewcommand*{\\abstract}{\\renewcommand*{\\@abstract}}
 
-\\newcommand*{\\@academiclabel}
-            {\\FrenchEnglish{Academic objectives}{Faglig målsetting}}
-\\newcommand*{\\@academic}{\\texttt{\\textbackslash academic\\{\\}}}
-\\newcommand*{\\academic}{\\renewcommand*{\\@academic}}
-
-\\newcommand*{\\@accumulatedlabel}
-            {\\FrenchEnglish{Accumulated}{Akkumulerte kostnader}}
 
 \\newcommand*{\\@addresslabel} {\\FrenchEnglish{Addresse}{Address}}
 \\newcommand*{\\@address}{}
@@ -377,9 +360,6 @@ headsep=1cm ]{geometry}
 \\newcommand*{\\@ourref}{Set with \\texttt{\\textbackslash ourref\\{\\}}}
 \\newcommand*{\\ourref}{\\renewcommand*{\\@ourref}}
 
-\\Newcommand*{\\@pageslabel}
-            {\\FrenchEnglish{NUMBER OF PAGES AND ATTACHMENTS}
-                          {ANTALL SIDER OG VEDLEGG}}
 
 \\newcommand*{\\@participantlabel}{\\FrenchEnglish{PARTICIPANT}{PARTICIPANT}}
 \\newcommand*{\\@participantslabel}{\\FrenchEnglish{PARTICIPANTS}{PARTICIPANTS}}
@@ -498,7 +478,7 @@ headsep=1cm ]{geometry}
 \\renewcommand{\\footrulewidth}{0pt}
 \\fancyfoot[c]{%%
   \\sffamily%%
-  \\color{sintefgray}
+  \\color{mdgray}
   \\@separator\\newline
   ~~%%
   \\begin{minipage}[c]{0.5\\textwidth}
@@ -580,7 +560,7 @@ headsep=1cm ]{geometry}
   \\vspace{1ex}%%
   \\noindent%%
   \\@separator\\\\
-  \\rowcolors{4}{}{sinteflightgray}
+  \\rowcolors{4}{}{mdlightgray}
   \\begin{tabularx}{\\textwidth}{XXccc}
     \\rowcolor{white}
       \\parbox{\\linewidth}{{\\@labeltext \\@initiatorlabel}\\\\\\@initiator}
