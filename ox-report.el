@@ -461,7 +461,7 @@ headheight=\\baselineskip]{geometry}
   \\scriptsize
   \\raggedleft
   \\setlength{\\parskip}{1ex}
-  \\includegraphics[height=70px]{\\@mainlogo}
+  \\includegraphics[height=70px,width=70px,keepaspectratio]{\\@mainlogo}
 %%\\includegraphics[width=\\textwidth]{\\@mainlogo}
 }
 
