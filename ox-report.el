@@ -83,16 +83,17 @@ headheight=\\baselineskip]{geometry}
 %%----------------------------------------------------------------------------------------
 \\makeatletter
 
-\\titleformat{\\section}{\\Large\\bfseries\\itshape}{%%
-	\\hspace*{-3mm}\\fontsize{3ex}{3.6ex}\\sectionNumbers\\selectfont\\color{mdgreen}%%
-	\\raisebox{-1mm}{\\thesection}%%
-}{-3mm}{}{}
+%%\\titleformat{\\section}{\\Large\\bfseries\\itshape}{%%
+%%	\\hspace*{-3mm}\\fontsize{3ex}{3.6ex}\\sectionNumbers\\selectfont\\color{mdgreen}%%
+%%	\\raisebox{-1mm}{\\thesection}%%
+%%}{-3mm}{}{}
 
-\\titleformat{\\subsection}{\\large\\bfseries\\itshape}{%%
-	\\hspace*{-3mm}\\fontsize{3ex}{3.6ex}\\subsectionNumbers\\selectfont\\color{mdgreen}%%
-	\\raisebox{-1mm}{\\thesubsection}%%
-}{-3mm}{}{}
-\\titleformat*{\\subsubsection}{\\normalfont\\bfseries\\itshape}
+%%\\titleformat{\\subsection}{\\large\\bfseries\\itshape}{%%
+%%	\\hspace*{-3mm}\\fontsize{3ex}{3.6ex}\\subsectionNumbers\\selectfont\\color{mdgreen}%%
+%%	\\raisebox{-1mm}{\\thesubsection}%%
+%%}{-3mm}{}{}
+
+%%\\titleformat*{\\subsubsection}{\\normalfont\\bfseries\\itshape}
 
 %%Titling spacing: left before after [right]
 \\titlespacing*{\\section}{0mm}{3mm}{0mm}
@@ -420,8 +421,6 @@ headheight=\\baselineskip]{geometry}
 
 
 %% MINUTES %<------------------------------------------------------->%
-
-%%\\DeclareOption*{\\PassOptionsToClass{\\CurrentOption}{sintefdoc}}
 \\ProcessOptions\\relax
 
 \\PassOptionsToPackage{table}{xcolor}
@@ -537,17 +536,17 @@ headheight=\\baselineskip]{geometry}
 
   \\rowcolors{1}{}{} %% Back to normal
   \\@separator\\\\
-  \\begin{minipage}{0.45\\textwidth}
-    \\hspace*{\\tabcolsep}\\@labeltext \\@projectlabel\\\\
+  \\begin{minipage}{0.40\\textwidth}
+    \\hspace*{\\tabcolsep}{\\@labeltext\\@projectlabel}\\\\
     \\hspace*{\\tabcolsep}\\@project
   \\end{minipage}
   \\hfill
   \\begin{minipage}{0.3\\textwidth}
-    \\@labeltext \\@datelabel\\\\
+    {\\@labeltext \\@datelabel}\\\\
     \\@date
   \\end{minipage}
   \\begin{minipage}{0.2\\textwidth}
-    \\@labeltext \\@durationlabel\\\\
+    {\\@labeltext \\@durationlabel}\\\\
     \\@duration
   \\end{minipage}\\\\
   \\@separator
@@ -588,7 +587,8 @@ headheight=\\baselineskip]{geometry}
     (:with-toc nil "toc" 1 )
     (:latex-hyperref-p nil "texht" org-latex-with-hyperref t)
     (:resume "resume" nil nil)
-    (:logo "LOGO" nil " "))
+    (:logo "LOGO" nil " ")
+    (:style "STYLE" nil nil))
   :translate-alist '((template . ox-report-template))
   :menu-entry
   '(?r "Export to Report layout"
@@ -632,8 +632,6 @@ headheight=\\baselineskip]{geometry}
    (let ((auteur (plist-get info :author))
          (titre (plist-get info :title)))
      (concat "
-
-
 
 "(when (plist-get info :org-latex-with-hyperref)
    (format "{%s}" (plist-get info :org-latex-with-hyperref) ))"
