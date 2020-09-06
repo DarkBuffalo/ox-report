@@ -89,6 +89,7 @@ it is necessary to separate the names by commas for a good formatting
 #+present: K. Soulet,I. Payet
 #+excuse:Sophie Fonsec,Karine Soulet
 #+END_SRC
+if there is no absentee and / or no apologized absentee, it suffices to delete the corresponding line.
 
 ** Language
 #+BEGIN_SRC emacs-lisp
