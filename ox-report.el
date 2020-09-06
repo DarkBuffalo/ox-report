@@ -76,51 +76,25 @@ textwidth=132mm,marginparsep=8mm,
 marginparwidth=40mm,textheight=58\\baselineskip,
 headheight=\\baselineskip]{geometry}
 
-
-
+\\microtypesetup{protrusion=true,final}
 %%----------------------------------------------------------------------------------------
 %%	HEADERS
 %%----------------------------------------------------------------------------------------
 \\makeatletter
 
-%%\\titleformat{\\section}{\\Large\\bfseries\\itshape}{%%
-%%	\\hspace*{-3mm}\\fontsize{3ex}{3.6ex}\\sectionNumbers\\selectfont\\color{mdgreen}%%
-%%	\\raisebox{-1mm}{\\thesection}%%
-%%}{-3mm}{}{}
-
-%%\\titleformat{\\subsection}{\\large\\bfseries\\itshape}{%%
-%%	\\hspace*{-3mm}\\fontsize{3ex}{3.6ex}\\subsectionNumbers\\selectfont\\color{mdgreen}%%
-%%	\\raisebox{-1mm}{\\thesubsection}%%
-%%}{-3mm}{}{}
-
-%%\\titleformat*{\\subsubsection}{\\normalfont\\bfseries\\itshape}
-
-%%Titling spacing: left before after [right]
-\\titlespacing*{\\section}{0mm}{3mm}{0mm}
-\\titlespacing*{name=\\section, numberless}{0mm}{3mm}{0mm}
-\\titlespacing*{\\subsection}{0mm}{2mm}{0mm}
-\\titlespacing*{\\subsubsection}{0mm}{2mm}{0mm}
-
-
-\\PassOptionsToPackage{protrusion=true,final}{microtype}
-
 \\newenvironment{fullpage}
     {\\skip\\noindent\\begin{minipage}
     {\\textwidth+\\marginparwidth+\\marginparsep}\\skip\\smallskip}
-    {\\end{minipage}\\vspace{.1in}}
+    {\\end{minipage}
+%%\\vspace{2mm}
+}
 
 
 %% COLOR %<--------------------------------------------------------->%
 \\RequirePackage{xcolor}
 
-%% Main colour
-\\definecolor{mdblue}{HTML}{003C65}
-
 %% Contrast colours
-\\definecolor{mdcyan}{HTML}{22A7E5}
-\\definecolor{mdmagenta}{HTML}{EC008C}
 \\definecolor{mdgreen}{HTML}{A4C21F}
-\\definecolor{mdyellow}{HTML}{F7E918}
 
 %% Additional colours
 \\definecolor{mdgrey}{HTML}{A19589}
@@ -151,43 +125,9 @@ headheight=\\baselineskip]{geometry}
 %% Standard style for labels, small and bold
 \\newcommand{\\@labeltext}{\\large\\scshape}
 
-\\newcommand*{\\@absentlabel}{\\FrenchEnglish{ABSENT}{ABSENT}}
-
-\\newcommand*{\\@abstractlabel}{\\FrenchEnglish{EXTRAIT}{ABSTRACT}}
-%% No star for \\@abstract, it can expand to multiple paragraphs
-\\newcommand{\\@abstract}{Set with \\texttt{\\textbackslash abstract\\{\\}}}
-\\renewcommand*{\\abstract}{\\renewcommand*{\\@abstract}}
-
-
-\\newcommand*{\\@addresslabel} {\\FrenchEnglish{Addresse}{Address}}
-\\newcommand*{\\@address}{}
-\\newcommand*{\\address}[1]{\\renewcommand{\\@address}{#1}}
-
-\\newcommand*{\\@agreedlabel}{\\FrenchEnglish{AS AGREED}{AS AGREED}}
-
-\\newcommand*{\\@attachmentlabel}{\\FrenchEnglish{ATTACHMENTS}{ATTACHMENTS}}
-\\newcommand{\\@attachments}{Set with \\texttt{\\textbackslash attachments\\{\\}}}
-\\newcommand{\\attachments}{\\renewcommand{\\@attachments}}
-\\newcommand*{\\@attachmentpages}
-            {[+ set with \\texttt{\\textbackslash attachmentpages\\{\\}]}}
-\\newcommand*{\\attachmentpages}{\\renewcommand*{\\@attachmentpages}}
-\\newcommand*{\\@attachmentrequest}
-            {\\FrenchEnglish{If not, explain in an attachment}
-                          {Avvik fra planen kommenteres i vedlegg}}
-
-\\newcommand*{\\@attentionlabel}{\\FrenchEnglish{FOR YOUR ATTENTION}{BEHANDLING}}
-
 \\newcommand*{\\@approvedlabel}{\\FrenchEnglish{APPROUVE PAR}{APPROVED BY}}
 \\newcommand*{\\@approved}{Set with \\texttt{\textbackslash approved\\{\\}}}
 \\newcommand*{\\approved}{\\renewcommand*{\\@approved}}
-
-%% No star for \\@asplannedlabel, it is on two lines
-\\newcommand{\\@asplannedlabel}
-           {\\FrenchEnglish{AS PLANNED\\YES~/~NO}{FØLGER PLAN\\JA~/~NEI}}
-
-\\newcommand*{\\@attnlabel}{\\FrenchEnglish{FOR THE ATTENTION OF}{VED}}
-\\newcommand*{\\@attn}{Set with \\texttt{\\textbackslash attn\\{\\}}}
-\\newcommand*{\\attn}{\\renewcommand*{\\@attn}}
 
 \\newcommand*{\\@authorlabel}{\\FrenchEnglish{Auteur(s)}{Author(s)}}
 \\newcommand*{\\@Authorlabel}{\\FrenchEnglish{AUTEUR(S)}{AUTHOR(S)}}
@@ -198,64 +138,8 @@ headheight=\\baselineskip]{geometry}
 
 \\newcommand*{\\@classificationlabel}{\\FrenchEnglish{SECRETAIRE}{GRADERING}}
 
-\\newcommand*{\\@clientlabel}{\\FrenchEnglish{CLIENT(S)}{CLIENT(S)}}
-\\newcommand*{\\@client}{Set with \\texttt{\\textbackslash client\\{\\}}}
-\\newcommand*{\\client}{\\renewcommand*{\\@client}}
-
-\\newcommand*{\\@clientreflabel}
-            {\\FrenchEnglish{CLIENT'S REFERENCE}{OPPDRAGSGIVERS REFERANSE}}
-\\newcommand*{\\@clientref}{Set with \\texttt{\\textbackslash clientref\\{\\}}}
-\\newcommand*{\\clientref}{\\renewcommand*{\\@clientref}}
-
-\\newcommand*{\\@clientvat}{Set with \\texttt{\\textbackslash clientvat\\{\\}}}
-\\newcommand*{\\clientvat}{\\renewcommand*{\\@clientvat}}
-
-\\newcommand*{\\@commentslabel}{\\FrenchEnglish{COMMENTS ARE INVITED}{UTTALELSE}}
-
-\\newcommand*{\\@completelabel}{\\FrenchEnglish{COMPLETION YEAR}{SLUTTÅR}}
-\\newcommand*{\\@complete}{\\texttt{\\textbackslash complete\\{\\}}}
-\\newcommand*{\\complete}{\\renewcommand*{\\@complete}}
-
-\\newcommand*{\\@currency}{kNOK}
-\\newcommand*{\\currency}[1]{\\renewcommand{\\@currency}{#1}}
-
 \\newcommand*{\\@datelabel}{\\FrenchEnglish{DATE}{DATE}}
-
-\\newcommand*{\\@datereceivedlabel}
-            {\\FrenchEnglish{TEST OBJECT RECEIVED}{PRØVEOBJEKT MOTTATT}}
-\\newcommand*{\\@datereceived}{Set with \texttt{\textbackslash datereceived\\{\\}}}
-\\newcommand*{\\datereceived}{\\renewcommand*{\\@datereceived}}
-
-\\newcommand*{\\@department}{}
-\\newcommand*{\\department}[1]{\\renewcommand{\\@department}{#1}}
-
-\\newcommand*{\\@directlabel}{\\FrenchEnglish{Direct line}{Direkte innvalg}}
-\\newcommand*{\\@direct}{}
-\\newcommand*{\\direct}[1]{\\renewcommand{\\@direct}{#1}}
-
-\\newcommand*{\\@distributionlabel}{\\FrenchEnglish{DISTRIBUTION}{GÅR TIL}}
-
-\\newcommand*{\\@duelabel}{\\FrenchEnglish{DUE DATE}{FRIST}}
-
-\\newcommand*{\\@elapsedlabel}
-            {\\FrenchEnglish{NUMBER OF HOURS ELAPSED}{MEDGÅTT TID, TIMER}}
-
-\\newcommand*{\\@email}{}
-\\newcommand*{\\email}[1]{\\renewcommand{\\@email}{#1}}
-
-
-
-\\newcommand*{\\@firstexplabel}
-            {\\FrenchEnglish{PLANNED EXPENDITURE\newline
-                           FOR 1\\textsuperscript{st} YEAR}
-                          {ØKONOMISK RAMME\newline STARTÅRET}}
-\\newcommand*{\\@firstexp}{\\texttt{\\textbackslash firstexp\\{\\}}}
-\\newcommand*{\\firstexp}{\\renewcommand*{\\@firstexp}}
-
-\\newcommand*{\\@fromlabel}{\\FrenchEnglish{DE}{FROM}}
-
-\\newcommand*{\\@historylabel}{\\FrenchEnglish{Document History}{Historikk}}
-
+\\newcommand*{\\@absentlabel}{\\FrenchEnglish{ABSENT}{ABSENT}}
 \\newcommand*{\\@excusedlabel}{\\FrenchEnglish{EXCUSE}{EXCUSED}}
 
 \\newcommand*{\\@durationlabel}{\\FrenchEnglish{DUREE}{DURATION}}
@@ -266,80 +150,8 @@ headheight=\\baselineskip]{geometry}
 \\newcommand*{\\@initiator}{Set with \\texttt{\\textbackslash initiator\\{\\}}}
 \\newcommand*{\\initiator}{\\renewcommand*{\\@initiator}}
 
-\\newcommand*{\\@institute}{}
-\\newcommand*{\\institute}[1]{\\renewcommand{\\@institute}{#1}}
-
-\\newcommand*{\\@ISBN}{Set with \\texttt{\\textbackslash isbn\\{\\}}}
-\\newcommand*{\\isbn}{\\renewcommand*{\\@ISBN}}
-
-\\newcommand*{\\@keywordlabel}{\\FrenchEnglish{MOTS CLES}{KEYWORDS}}
-%% No star for \\@keywords, it can expand to multiple lines
-\\newcommand{\\@keywords}{Set with \\texttt{\\textbackslash keywords\\{\\}}}
-\\newcommand*{\\keywords}{\\renewcommand*{\\@keywords}}
-
-\\newcommand*{\\@lastexp}{\texttt{\textbackslash lastexp\\{\\}}}
-\\newcommand*{\\lastexp}{\\renewcommand*{\\@lastexp}}
-
-\\newcommand*{\\@lasthrs}{\texttt{\textbackslash lasthrs\\{\\}}}
-\\newcommand*{\\lasthrs}{\\renewcommand*{\\@lasthrs}}
-
-\\newcommand*{\\@lastperiodlabel}{\\FrenchEnglish{Last period}{Siste periode}}
-
-\\newcommand*{\\@locationlabel}{\\FrenchEnglish{Lieu}{Location}}
-\\newcommand*{\\@location}{}
-\\newcommand*{\\location}[1]{\\renewcommand{\\@location}{#1}}
-
-\\newcommand*{\\@managerlabel}{\\FrenchEnglish{PROJECT MANAGER}{PROSJEKTLEDER}}
-\\newcommand*{\\@manager}{Set with \\texttt{\\textbackslash manager\\{\\}}}
-\\newcommand*{\\manager}{\\renewcommand*{\\@manager}}
-
-\\newcommand*{\\@motto}{\\FrenchEnglish{Technology for a better society}
-                                   {Teknologi for et bedre samfunn}}
-
-\\newcommand*{\\name}{\\def\\fromname}
-\\name{Set with \\texttt{\\textbackslash name\\{\\}}}
-
-\\newcommand*{\\@objectivelabel}{\\FrenchEnglish{OBJECTIVE}{OBJECTIVE}}
-
-\\newcommand*{\\@offernumberlabel}{\\FrenchEnglish{OFFER NUMBER}{TILBUDSNUMMER}}
-\\newcommand*{\\@offernumber}{Set with \\texttt{\\textbackslash offer\\{\\}}}
-\\newcommand*{\\offer}{\\renewcommand*{\\@offernumber}}
-\\newcommand*{\\proposal}{\\renewcommand*{\\@offernumber}}
-
-\\newcommand*{\\@onbudget}{\\texttt{\\textbackslash onbudget\\{\\}}}
-\\newcommand*{\\onbudget}{\\renewcommand*{\\@onbudget}}
-
-\\newcommand*{\\@onschedule}{\\texttt{\\textbackslash onschedule\\{\\}}}
-\\newcommand*{\\onschedule}{\\renewcommand*{\\@onschedule}}
-
-\\newcommand*{\\@orderreference}
-            {[Set with \\texttt{\\textbackslash orderreference\\{\\}}]}
-\\newcommand*{\\orderreference}{\\renewcommand*{\\@orderreference}}
-
-\\newcommand*{\\@orderdated}{Set with \\texttt{\\textbackslash orderdated\\{\\}}}
-\\newcommand*{\\orderdated}{\\renewcommand*{\\@orderdated}}
-
-\\newcommand*{\\@orderby}{Set with \\texttt{\\textbackslash orderby\\{\\}}}
-\\newcommand*{\\orderby}{\\renewcommand*{\\@orderby}}
-
-\\newcommand*{\\@ourreflabel}{\\FrenchEnglish{Our reference}{Vår referanse}}
-\\newcommand*{\\@ourref}{Set with \\texttt{\\textbackslash ourref\\{\\}}}
-\\newcommand*{\\ourref}{\\renewcommand*{\\@ourref}}
-
-
 \\newcommand*{\\@participantlabel}{\\FrenchEnglish{PARTICIPANT}{PARTICIPANT}}
 \\newcommand*{\\@participantslabel}{\\FrenchEnglish{PARTICIPANTS}{PARTICIPANTS}}
-
-\\newcommand*{\\@phonelabel}{\\FrenchEnglish{Telephone}{Phone}}
-\\newcommand*{\\@phone}{}
-\\newcommand*{\\phone}[1]{\\renewcommand{\\@phone}{#1}}
-
-\\newcommand*{\\@planexplabel}
-            {\\FrenchEnglish{Planned expenditure}{Total kostnadsplan}}
-\\newcommand*{\\@planexp}{\\texttt{\\textbackslash planexp\\{\\}}}
-\\newcommand*{\\planexp}{\\renewcommand*{\\@planexp}}
-
-\\newcommand*{\\@planlabel}{\\FrenchEnglish{Planned}{Planned}}
 
 \\newcommand*{\\@preparedlabel}{\\FrenchEnglish{PREPARE PAR}{PREPARED BY}}
 \\newcommand*{\\@prepared}{Set with \\texttt{\\textbackslash prepared\\{\\}}}
@@ -351,18 +163,6 @@ headheight=\\baselineskip]{geometry}
 \\newcommand*{\\@project}{Set with \\texttt{\\textbackslash project\\{\\}}}
 \\newcommand*{\\project}{\\renewcommand*{\\@project}}
 
-\\newcommand*{\\@projectmemolabel}
-            {\\FrenchEnglish{PROJECT MEMO NUMBER}{PROSJEKTNOTATNUMMER}}
-\\newcommand*{\\@projectmemo}{Set with \\texttt{\\textbackslash projectmemo\\{\\}}}
-\\newcommand*{\\projectmemo}{\\renewcommand*{\\@projectmemo}}
-
-\\newcommand*{\\@projectname}{Set with \\texttt{\\textbackslash projectname\\{\\}}}
-\\newcommand*{\\projectname}{\\renewcommand*{\\@projectname}}
-
-\\newcommand*{\\@recipientlabel}{\\FrenchEnglish{TO}{TIL}}
-\\newcommand*{\\@recipient}{Set with \\texttt{\\textbackslash recipient\\{\\}}}
-\\newcommand*{\\recipient}{\\renewcommand*{\\@recipient}}
-
 \\newcommand*{\\@referencelabel}{\\FrenchEnglish{REFERENCE}{REFERENCE}}
 
 \\newcommand*{\\@reportlabel}{\\FrenchEnglish{Rapport}{Report}}
@@ -371,53 +171,22 @@ headheight=\\baselineskip]{geometry}
 \\newcommand*{\\@reportnumber}{Set with \\texttt{\\textbackslash reportnumber\\{\\}}}
 \\newcommand*{\\reportnumber}{\\renewcommand*{\\@reportnumber}}
 
-\\newcommand*{\\@responsiblelabel}{\\FrenchEnglish{RESPONSIBLE}{RESPONSIBLE}}
-
-\\newcommand*{\\@schedulelabel}{\\FrenchEnglish{Schedule}{Tidsramme}}
-
-\\newcommand*{\\signature}{\\def\\fromsig}
-\\signature{}
-\\newcommand*{\\@signaturelabel}{\\FrenchEnglish{SIGNATURE}{SIGNATUR}}
-
-\\newcommand*{\\@startlabel}{\\FrenchEnglish{STARTING YEAR}{STARTÅR}}
-\\newcommand*{\\@start}{\\texttt{\\textbackslash start\\{\\}}}
-\\newcommand*{\\start}{\\renewcommand*{\\@start}}
-
-\\newcommand*{\\@statuslabel}{STATUS}
-\\newcommand*{\\@statusdatelabel}
-            {\\FrenchEnglish{STATUS AS OF DATE}{STATUS PER DATO}}
-
-\\newcommand*{\\@statusdate}{Set with \\texttt{\\textbackslash statusdate\\{\\}}}
-\\newcommand*{\\statusdate}{\\renewcommand*{\\@statusdate}}
-
-\\newcommand*{\\@subtitle}{Set with \\texttt{\\textbackslash subtitle\\{\\}}}
-\\newcommand*{\\subtitle}{\\renewcommand*{\\@subtitle}}
-
-\\newcommand*{\\@summaryclassificationlabel}
-            {\\FrenchEnglish{CLASSIFICATION THIS PAGE}{GRADERING DENNE SIDE}}
-
-\\newcommand*{\\@tasklistlabel}{\\FrenchEnglish{Task List}{Oppgaveliste}}
-\\newcommand*{\\@tasknumberlabel}{\\#}
-\\newcommand*{\\@tasklabel}{\\FrenchEnglish{TASK}{OPPGAVE}}
-
-\\newcommand*{\\@testdatelabel}{\\FrenchEnglish{TEST DATE}{PRØVEDATO}}
-\\newcommand*{\\@testdate}{\\texttt{\\textbackslash testdate\\{\\}}}
-\\newcommand*{\\testdate}{\\renewcommand*{\\@testdate}}
-
-\\newcommand*{\\@testlocationlabel}{\\FrenchEnglish{TEST LOCATION}{PRØVESTED}}
-\\newcommand*{\\@testlocation}{\\texttt{\\textbackslash testlocation\\{\\}}}
-\\newcommand*{\\testlocation}{\\renewcommand*{\\@testlocation}}
-
-\\newcommand*{\\@testobjectlabel}{\\FrenchEnglish{TEST OBJECT}{PRØVEOBJEKT}}
-\\newcommand*{\\@testobject}{Set with \\texttt{\\textbackslash testobject\\{\\}}}
-\\newcommand*{\\testobject}{\\renewcommand*{\\@testobject}}
-
-
 \\newcommand*{\\@wheremeeting}{Set with \\texttt{\\textbackslash wheremeeting\\{\\}}}
 \\newcommand*{\\wheremeeting}{\\renewcommand*{\\@wheremeeting}}
 
 \\newcommand*{\\@whenmeeting}{Set with \\texttt{\\textbackslash whenmeeting\\{\\}}}
 \\newcommand*{\\whenmeeting}{\\renewcommand*{\\@whenmeeting}}
+
+
+%% TASKS
+
+\\newcommand*{\\@tasklistlabel}{\\FrenchEnglish{Liste de tâches}{Task List}}
+\\newcommand*{\\@tasknumberlabel}{\\#}
+\\newcommand*{\\@tasklabel}{\\FrenchEnglish{TACHE}{TASK}}
+
+\\newcommand*{\\@duelabel}{\\FrenchEnglish{DATE D'ECHEANCE}{DUE DATE}}
+
+\\newcommand*{\\@responsiblelabel}{\\FrenchEnglish{RESPONSABLE}{RESPONSIBLE}}
 
 
 %% MINUTES %<------------------------------------------------------->%
@@ -514,7 +283,7 @@ headheight=\\baselineskip]{geometry}
   \\hfill
   \\begin{minipage}[b]{0.20\\textwidth}
     %% Bring the colophon and address back up a bit
-    \\vspace*{-25pt} %%https://fr.overleaf.com/project/5f2c14ff95d5d40001ccdf96
+    \\vspace*{-25pt}
    \\@rlogo
   \\end{minipage}
 
@@ -553,8 +322,6 @@ headheight=\\baselineskip]{geometry}
   \\noindent
 }
 
-
-
 \\makeatother
 
 " ;;import de la feuille de syle dans texmf
@@ -563,8 +330,6 @@ headheight=\\baselineskip]{geometry}
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-
 
 (defgroup org-export-report nil
   "Options specific to Report back-end."
