@@ -1,6 +1,8 @@
 #+title:OX-REPORT
 #+author: Matthias David
 
+[[https://melpa.org/packages/ox-report-badge.svg]]
+
 #+caption: Header of pdf
 #+attr_latex: :width 300px
 [[file:img/header.png]]
