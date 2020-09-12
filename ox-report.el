@@ -45,7 +45,7 @@
 
 (add-to-list 'org-latex-classes
              '("report"                          ;class-name
-               "\\documentclass[twoside, 10pt]{article}
+               "\\documentclass[10pt]{article}
 
 \\usepackage[defaultfam,light,tabular,lining]{montserrat} %% Option 'defaultfam'
 %% only if the base font of the document is to be sans serig
@@ -212,8 +212,8 @@ headheight=\\baselineskip]{geometry}
   \\@separator\\newline
   ~~%%
   \\begin{minipage}[c]{0.5\\textwidth}
-    \\small{\\textbf{\\@projectlabel}}\\newline
-    \\@project
+    \\hspace*{3pt}\\small{\\textbf{\\@projectlabel}}\\newline
+    \\hspace*{\\tabcolsep}\\@project
   \\end{minipage}%%
   \\hfill
   \\thepage\\ \\FrenchEnglish{de}{of} \\pageref{LastPage}
@@ -306,7 +306,7 @@ headheight=\\baselineskip]{geometry}
   \\rowcolors{1}{}{} %% Back to normal
   \\@separator\\\\
   \\begin{minipage}{0.40\\textwidth}
-    \\hspace*{\\tabcolsep}{\\@labeltext\\@projectlabel}\\\\
+    \\hspace*{3pt}{\\@labeltext\\@projectlabel}\\\\
     \\hspace*{\\tabcolsep}\\@project
   \\end{minipage}
   \\hfill
