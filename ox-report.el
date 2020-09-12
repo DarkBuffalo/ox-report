@@ -136,8 +136,6 @@ headheight=\\baselineskip]{geometry}
 \\newcommand*{\\@checked}{Set with \\texttt{\textbackslash checked\\{\\}}}
 \\newcommand*{\\checked}{\\renewcommand*{\\@checked}}
 
-\\newcommand*{\\@classificationlabel}{\\FrenchEnglish{SECRETAIRE}{GRADERING}}
-
 \\newcommand*{\\@datelabel}{\\FrenchEnglish{DATE}{DATE}}
 \\newcommand*{\\@absentlabel}{\\FrenchEnglish{ABSENT}{ABSENT}}
 \\newcommand*{\\@excusedlabel}{\\FrenchEnglish{EXCUSE}{EXCUSED}}
@@ -343,8 +341,8 @@ headheight=\\baselineskip]{geometry}
     (:present "PRESENT" nil nil)
     (:absent "ABSENT" nil nil)
     (:excuse "EXCUSE" nil nil)
-    (:secretaire "SECRETAIRE" nil " " t)
-    (:secretaire "SECRETARY" nil " " t)
+    (:secretaire "SECRETAIRE" nil nil t)
+    (:secretaire "SECRETARY" nil nil t)
     (:dure "DURE" nil " ")
     (:dure "DURATION" nil " ")
     (:ou "OU" nil " ")
@@ -407,7 +405,11 @@ headheight=\\baselineskip]{geometry}
 "(when (plist-get info :org-latex-with-hyperref)
    (format "{%s}" (plist-get info :org-latex-with-hyperref) ))"
 
-\\author{"(org-export-data auteur info)"}
+\\author{"
+   (if (plist-get info :secretaire)
+       (format "%s" (plist-get info :secretaire) )
+     (org-export-data auteur info))
+"}
 \\title{"(org-export-data titre info)"}
 
 \\wheremeeting{"(when (plist-get info :ou)
