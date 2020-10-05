@@ -52,7 +52,7 @@ If you use Doom Emacs
 
 * USAGE
 - =C-c C-e r o= :: Export as PDF and Open
-
+- =C-c C-e C-s r o= :: Export as PDF and open (subtree only)
 
 * CONFIGURATION
 To configure the export we use the header of the org file
@@ -109,6 +109,20 @@ or
 #+language: en
 #+END_SRC
 
+** subtree
+if you want to export only a subtree, just use the =PROPERTIES= drawer and put =EXPORT_= in front of each key.
+Example:
+#+BEGIN_SRC org
+:PROPERTIES:
+:EXPORT_DATE: 01/01/2020
+:EXPORT_OU: la
+:EXPORT_PRESENT: Mireille tonlonto, Legros Robert
+:EXPORT_INITIATEUR: Karl os
+:EXPORT_PROJET: Secret project
+:EXPORT_DURE: 2H
+:END:
+#+END_SRC
+
 ** Use Yasnippet
 #+BEGIN_SRC org
 # -*- mode: snippet -*-
@@ -147,6 +161,9 @@ or
 #+dure: ${8:2H}
 #+logo: logo.png
 #+END_SRC
+
+
+
 
 * CHANGELOG
 ** v0.2
