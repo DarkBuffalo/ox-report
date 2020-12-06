@@ -39,6 +39,9 @@
 
 (require 'ox)
 (require 'cl-lib)
+(require 'org-msg)
+(require 'mu4e)
+
 
 (add-to-list 'org-latex-packages-alist
              '("AUTO" "babel" t ("pdflatex")))
@@ -366,7 +369,22 @@ headheight=\\baselineskip]{geometry}
         (?o "As PDF and Open"
             (lambda (a s v b)
               (if a (ox-report-export-to-pdf t s v b)
-                (org-open-file (ox-report-export-to-pdf nil s v b))))))))
+                (org-open-file (ox-report-export-to-pdf nil s v b)))))
+        (?m "As PDF an attach to mail"
+            (lambda (a s v b)
+              (if a (ox-fart-export-to-pdf t s v b)
+             (ox-fart-pdf-to-mu4e (ox-fart-export-to-pdf nil s v b))
+                ))))))
+
+
+(defun ox-fart-pdf-to-mu4e (att)
+  "Export Pdf ATT to mail."
+  (mu4e~start)
+  (mu4e-compose-new)
+  (when att
+    (if (file-exists-p att)
+        (org-msg-attach-attach att)
+      (mu4e-warn "File not found"))))
 
 (defun ox-report-template (contents info)
   "INFO are the header data and CONTENTS is the content of the org file and return complete document string for this export."

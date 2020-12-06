@@ -53,6 +53,11 @@ If you use Doom Emacs
 * USAGE
 - =C-c C-e r o= :: Export as PDF and Open
 - =C-c C-e C-s r o= :: Export as PDF and open (subtree only)
+- =C-c C-e r m= :: Export to PDF and attach to mail
+
+#+caption: Menu
+#+attr_latex: :width 200px
+file:/img/menu.png
 
 * CONFIGURATION
 To configure the export we use the header of the org file
@@ -166,6 +171,9 @@ or
 
 
 * CHANGELOG
+** v0.3
+*** Features
+- ADD: export to pdf and attach on mail
 ** v0.2
 *** Features
 - CHG: Typography (font montserrat)
@@ -194,4 +202,5 @@ or
 GPLv3.
 
 * THANKS
--  Clemens Radermacher [[https://github.com/clemera][@clamera]] for [[https://www.reddit.com/r/emacs/comments/i7279y/emacs_lisp_error_noob/][help]]
+- Clemens Radermacher [[https://github.com/clemera][@clamera]] for [[https://www.reddit.com/r/emacs/comments/i7279y/emacs_lisp_error_noob/][help]]
+- jcs from irreal.org website for [[https://irreal.org/blog/?p=9178][article]]
