@@ -57,7 +57,7 @@ If you use Doom Emacs
 
 #+caption: Menu
 #+attr_latex: :width 200px
-[[file:img/menu.png]]
+[[file:img/choice.png]]
 
 * CONFIGURATION
 To configure the export we use the header of the org file
