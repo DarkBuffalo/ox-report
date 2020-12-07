@@ -372,12 +372,12 @@ headheight=\\baselineskip]{geometry}
                 (org-open-file (ox-report-export-to-pdf nil s v b)))))
         (?m "As PDF an attach to mail"
             (lambda (a s v b)
-              (if a (ox-fart-export-to-pdf t s v b)
-             (ox-fart-pdf-to-mu4e (ox-fart-export-to-pdf nil s v b))
+              (if a (ox-report-export-to-pdf t s v b)
+             (ox-report-pdf-to-mu4e (ox-report-export-to-pdf nil s v b))
                 ))))))
 
 
-(defun ox-fart-pdf-to-mu4e (att)
+(defun ox-report-pdf-to-mu4e (att)
   "Export Pdf ATT to mail."
   (mu4e~start)
   (mu4e-compose-new)
