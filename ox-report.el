@@ -380,7 +380,7 @@ headheight=\\baselineskip]{geometry}
 (defun ox-report-pdf-to-mu4e (att)
   "Export Pdf ATT to mail."
   (mu4e~start)
-  (mu4e-compose-new)
+  (compose-mail)
   (when att
     (if (file-exists-p att)
         (org-msg-attach-attach att)
