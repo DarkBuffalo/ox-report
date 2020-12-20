@@ -136,16 +136,31 @@ Example:
 # key: report
 # condition: t
 # --
-#+title: ${1:Titre}
-#+author: ${2:Auteur}
-#+options: toc:nil
-#+where: ${3:Ou}
-#+when: ${4:Date}
-#+present: ${5:Sophie Fonsec}
-#+initiator: ${6:Matthias DAVID}
-#+project: ${7:Secret project}
-#+duration: ${8:2H}
-#+logo: logo.png
+,#+title: ${1:Titre}
+,#+author: ${2:Auteur}
+,#+options: toc:nil
+,#+where: ${3:Ou}
+,#+when: ${4:Date}
+,#+present: ${5:Sophie Fonsec}
+,#+initiator: ${6:Matthias DAVID}
+,#+project: ${7:Secret project}
+,#+duration: ${8:2H}
+,#+logo: logo.png
+
+,* ACTIONS
+ ,#+BEGIN: columnview :id local :match "/TODO|DONE" :format "%ITEM(What) %TAGS(Who) %DEADLINE(When) %TODO(State)"
+   | What | Who | When | State |
+   |------+-----+------+-------|
+ ,#+END:
+,** DECISIONS
+ ,#+BEGIN: columnview :id local :match "Decision" :format "%ITEM(Decisions)"
+  | Decisions |
+  |-----------|
+ ,#+END:
+
+,* Notes
+,- Use =:Decision:= tag for decision
+,- Use entry with =TODO= (or =DONE=) for actions
 #+END_SRC
 or
 #+BEGIN_SRC org
