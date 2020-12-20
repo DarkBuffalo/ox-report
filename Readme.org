@@ -152,7 +152,7 @@ Example:
    | What | Who | When | State |
    |------+-----+------+-------|
  ,#+END:
-,** DECISIONS
+,* DECISIONS
  ,#+BEGIN: columnview :id local :match "Decision" :format "%ITEM(Decisions)"
   | Decisions |
   |-----------|
