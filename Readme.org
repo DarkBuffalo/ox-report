@@ -129,6 +129,7 @@ Example:
 #+END_SRC
 
 ** Use Yasnippet
+- look [[https://vincent.demeester.fr/articles/my_organizational_workflow.html][vincent demeester's blog]] for meeting template
 #+BEGIN_SRC org
 # -*- mode: snippet -*-
 # name: report
