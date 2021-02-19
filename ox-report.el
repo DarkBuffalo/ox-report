@@ -4,7 +4,7 @@
 ;; Author: Matthias David <matthias@gnu.re>
 ;; URL: https://github.com/DarkBuffalo/ox-report
 ;; Version: 0.2
-;; Package-Requires: ((emacs "24.4") (mu4e) (org-msg))
+;; Package-Requires: ((emacs "24.4") (org-msg))
 ;; Keywords: org, outlines, report, exporter, meeting, minutes
 
 ;;; Commentary:
@@ -40,7 +40,7 @@
 (require 'ox)
 (require 'cl-lib)
 (require 'org-msg)
-(require 'mu4e)
+;;(require 'mu4e)
 
 
 (add-to-list 'org-latex-packages-alist
@@ -379,12 +379,13 @@ headheight=\\baselineskip]{geometry}
 
 (defun ox-report-pdf-to-mu4e (att)
   "Export Pdf ATT to mail."
-  (mu4e~start)
+  (when (require 'mu4e nil 'noerror)
+    (mu4e~start))
   (compose-mail)
   (when att
     (if (file-exists-p att)
         (org-msg-attach-attach att)
-      (mu4e-warn "File not found"))))
+      (message "File not found"))))
 
 (defun ox-report-template (contents info)
   "INFO are the header data and CONTENTS is the content of the org file and return complete document string for this export."
