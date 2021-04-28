@@ -207,6 +207,7 @@ headheight=\\baselineskip]{geometry}
 \\newcommand*{\\@tasklistlabel}{\\GermanEnglish{Aufgaben}{Task List}}
 \\newcommand*{\\@tasknumberlabel}{\\#}
 \\newcommand*{\\@tasklabel}{\\FrenchEnglish{TACHE}{TASK}}
+\\newcommand*{\\@tasklabel}{\\GermanEnglish{Aufgabe}{TASK}}
 
 \\newcommand*{\\@duelabel}{\\FrenchEnglish{DATE D'ECHEANCE}{DUE DATE}}
 \\newcommand*{\\@duelabel}{\\GermanEnglish{ERLEDIGUNGSDATUM}{DUE DATE}}
