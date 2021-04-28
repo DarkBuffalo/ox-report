@@ -134,46 +134,63 @@ headheight=\\baselineskip]{geometry}
 \\newcommand{\\@labeltext}{\\large\\scshape}
 
 \\newcommand*{\\@approvedlabel}{\\FrenchEnglish{APPROUVE PAR}{APPROVED BY}}
+\\newcommand*{\\@approvedlabel}{\\GermanEnglish{FREIGEGEBEN VON}{APPROVED BY}}
 \\newcommand*{\\@approved}{Set with \\texttt{\textbackslash approved\\{\\}}}
 \\newcommand*{\\approved}{\\renewcommand*{\\@approved}}
 
 \\newcommand*{\\@authorlabel}{\\FrenchEnglish{Auteur(s)}{Author(s)}}
+\\newcommand*{\\@authorlabel}{\\GermanEnglish{Author(en)}{Author(s)}}
 \\newcommand*{\\@Authorlabel}{\\FrenchEnglish{AUTEUR(S)}{AUTHOR(S)}}
+\\newcommand*{\\@Authorlabel}{\\GermanEnglish{AUTHOR(EN)}{AUTHOR(S)}}
 
 \\newcommand*{\\@checkedlabel}{\\FrenchEnglish{VERIFIE PAR}{CHECKED BY}}
+\\newcommand*{\\@checkedlabel}{\\GermanEnglish{GEPRÜFT VON}{CHECKED BY}}
 \\newcommand*{\\@checked}{Set with \\texttt{\textbackslash checked\\{\\}}}
 \\newcommand*{\\checked}{\\renewcommand*{\\@checked}}
 
 \\newcommand*{\\@datelabel}{\\FrenchEnglish{DATE}{DATE}}
+\\newcommand*{\\@datelabel}{\\GermanEnglish{DATUM}{DATE}}
 \\newcommand*{\\@absentlabel}{\\FrenchEnglish{ABSENT}{ABSENT}}
+\\newcommand*{\\@absentlabel}{\\GermanEnglish{ABWESEND}{ABSENT}}
 \\newcommand*{\\@excusedlabel}{\\FrenchEnglish{EXCUSE}{EXCUSED}}
+\\newcommand*{\\@excusedlabel}{\\GermanEnglish{ENTSCHULDIGT}{EXCUSED}}
 
 \\newcommand*{\\@durationlabel}{\\FrenchEnglish{DUREE}{DURATION}}
+\\newcommand*{\\@durationlabel}{\\GermanEnglish{DAUER}{DURATION}}
 \\newcommand*{\\@duration}{Set with \\texttt{\\textbackslash duration\\{\\}}}
 \\newcommand*{\\duration}{\\renewcommand*{\\@duration}}
 
 \\newcommand*{\\@initiatorlabel}{\\FrenchEnglish{INITIATEUR}{INITIATED BY}}
+\\newcommand*{\\@initiatorlabel}{\\GermanEnglish{INITIATOR}{INITIATED BY}}
 \\newcommand*{\\@initiator}{Set with \\texttt{\\textbackslash initiator\\{\\}}}
 \\newcommand*{\\initiator}{\\renewcommand*{\\@initiator}}
 
 \\newcommand*{\\@participantlabel}{\\FrenchEnglish{PARTICIPANT}{PARTICIPANT}}
+\\newcommand*{\\@participantlabel}{\\GermanEnglish{TEILNEHMER}{PARTICIPANT}}
 \\newcommand*{\\@participantslabel}{\\FrenchEnglish{PARTICIPANTS}{PARTICIPANTS}}
+\\newcommand*{\\@participantslabel}{\\GermanEnglish{TEILNEHMER}{PARTICIPANTS}}
 
 \\newcommand*{\\@preparedlabel}{\\FrenchEnglish{PREPARE PAR}{PREPARED BY}}
+\\newcommand*{\\@preparedlabel}{\\GermanEnglish{VORBEREITET VON}{PREPARED BY}}
 \\newcommand*{\\@prepared}{Set with \\texttt{\\textbackslash prepared\\{\\}}}
 \\newcommand*{\\prepared}{\\renewcommand*{\\@prepared}}
 
 \\newcommand*{\\@presentlabel}{\\FrenchEnglish{PRESENT}{PRESENT}}
+\\newcommand*{\\@presentlabel}{\\GermanEnglish{ANWESEND}{PRESENT}}
 
 \\newcommand*{\\@projectlabel}{\\FrenchEnglish{PROJET}{PROJECT}}
+\\newcommand*{\\@projectlabel}{\\GermanEnglish{PROJEKT}{PROJECT}}
 \\newcommand*{\\@project}{Set with \\texttt{\\textbackslash project\\{\\}}}
 \\newcommand*{\\project}{\\renewcommand*{\\@project}}
 
 \\newcommand*{\\@referencelabel}{\\FrenchEnglish{REFERENCE}{REFERENCE}}
+\\newcommand*{\\@referencelabel}{\\GermanEnglish{REFERENZ}{REFERENCE}}
 
 \\newcommand*{\\@reportlabel}{\\FrenchEnglish{Rapport}{Report}}
+\\newcommand*{\\@reportlabel}{\\GermanEnglish{Bericht}{Report}}
 
 \\newcommand*{\\@reportnumberlabel}{\\FrenchEnglish{RAPPORT N°}{REPORT NUMBER}}
+\\newcommand*{\\@reportnumberlabel}{\\GermanEnglish{BERICHT NUMMER}{REPORT NUMBER}}
 \\newcommand*{\\@reportnumber}{Set with \\texttt{\\textbackslash reportnumber\\{\\}}}
 \\newcommand*{\\reportnumber}{\\renewcommand*{\\@reportnumber}}
 
@@ -187,12 +204,15 @@ headheight=\\baselineskip]{geometry}
 %% TASKS
 
 \\newcommand*{\\@tasklistlabel}{\\FrenchEnglish{Liste de tâches}{Task List}}
+\\newcommand*{\\@tasklistlabel}{\\GermanEnglish{Aufgaben}{Task List}}
 \\newcommand*{\\@tasknumberlabel}{\\#}
 \\newcommand*{\\@tasklabel}{\\FrenchEnglish{TACHE}{TASK}}
 
 \\newcommand*{\\@duelabel}{\\FrenchEnglish{DATE D'ECHEANCE}{DUE DATE}}
+\\newcommand*{\\@duelabel}{\\GermanEnglish{ERLEDIGUNGSDATUM}{DUE DATE}}
 
 \\newcommand*{\\@responsiblelabel}{\\FrenchEnglish{RESPONSABLE}{RESPONSIBLE}}
+\\newcommand*{\\@responsiblelabel}{\\GermanEnglish{VERANTWORTLICH}{RESPONSIBLE}}
 
 
 %% MINUTES %<------------------------------------------------------->%
@@ -201,6 +221,7 @@ headheight=\\baselineskip]{geometry}
 \\PassOptionsToPackage{table}{xcolor}
 
 \\renewcommand*{\\@authorlabel}{\\FrenchEnglish{ECRIT PAR}{WRITTEN BY}}
+\\renewcommand*{\\@authorlabel}{\\GermanEnglish{GESCHRIEBEN VON}{WRITTEN BY}}
 
 
 %% Setting up header and footer
@@ -222,7 +243,7 @@ headheight=\\baselineskip]{geometry}
     \\hspace*{\\tabcolsep}\\@project
   \\end{minipage}%%
   \\hfill
-  \\thepage\\ \\FrenchEnglish{de}{of} \\pageref{LastPage}
+  \\thepage\\ \\FrenchEnglish{de}{of} \\GermanEnglish{von}{of} \\pageref{LastPage}
   ~~\\newline
   \\@separator
 }
