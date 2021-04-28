@@ -115,6 +115,11 @@ headheight=\\baselineskip]{geometry}
    \\iflanguage{french}{#1}{}
    \\iflanguage{english}{#2}{}}
 
+%% Command to provide alternative translations in German and English
+\\newcommand{\\GermanEnglish}[2]{
+   \\iflanguage{german}{#1}{}
+   \\iflanguage{english}{#2}{}}
+
 %% This} separating line is used across several documents,
 \\newcommand{\\@separator}{%%
  %% To make sure we have spacing on both sides, make an invisible rule, 2X tall
