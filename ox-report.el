@@ -110,10 +110,12 @@ headheight=\\baselineskip]{geometry}
 
 \\ProcessOptions\\relax
 
-%% Command to provide alternative translations in French and English
-\\newcommand{\\FrenchEnglish}[2]{
+%% Command to provide alternative translations
+\\newcommand{\\UseLanguage}[3]{
    \\iflanguage{french}{#1}{}
-   \\iflanguage{english}{#2}{}}
+   \\iflanguage{english}{#2}{}
+   \\iflanguage{german}{#3}{}
+}
 
 %% This} separating line is used across several documents,
 \\newcommand{\\@separator}{%%
@@ -128,47 +130,49 @@ headheight=\\baselineskip]{geometry}
 %% Standard style for labels, small and bold
 \\newcommand{\\@labeltext}{\\large\\scshape}
 
-\\newcommand*{\\@approvedlabel}{\\FrenchEnglish{APPROUVE PAR}{APPROVED BY}}
+\\newcommand*{\\@approvedlabel}{\\UseLanguage{APPROUVE PAR}{APPROVED BY}{FREIGEGEBEN VON}}
 \\newcommand*{\\@approved}{Set with \\texttt{\textbackslash approved\\{\\}}}
 \\newcommand*{\\approved}{\\renewcommand*{\\@approved}}
 
-\\newcommand*{\\@authorlabel}{\\FrenchEnglish{Auteur(s)}{Author(s)}}
-\\newcommand*{\\@Authorlabel}{\\FrenchEnglish{AUTEUR(S)}{AUTHOR(S)}}
+\\newcommand*{\\@authorlabel}{\\UseLanguage{Auteur(s)}{Author(s)}{Author(en)}}
+\\newcommand*{\\@Authorlabel}{\\UseLanguage{AUTEUR(S)}{AUTHOR(S)}{AUTHOR(EN)}}
 
-\\newcommand*{\\@checkedlabel}{\\FrenchEnglish{VERIFIE PAR}{CHECKED BY}}
+\\newcommand*{\\@checkedlabel}{\\FrenchEnglish{VERIUseLanguage}{CHECKED BY}BY}}}
 \\newcommand*{\\@checked}{Set with \\texttt{\textbackslash checked\\{\\}}}
 \\newcommand*{\\checked}{\\renewcommand*{\\@checked}}
 
-\\newcommand*{\\@datelabel}{\\FrenchEnglish{DATE}{DATE}}
-\\newcommand*{\\@absentlabel}{\\FrenchEnglish{ABSENT}{ABSENT}}
-\\newcommand*{\\@excusedlabel}{\\FrenchEnglish{EXCUSE}{EXCUSED}}
+\\newcommand*{\\@datelabel}{\\UseLanguage{DATE}{DATE}{DATUM}}
+\\newcommand*{\\@absentlabel}{\\UseLanguage{ABSENT}{ABSENT}{ABWESEND}}
+\\newcommand*{\\@excusedlabel}{\\UseLanguage{EXCUSE}{EXCUSED}{ENTSCHULDIGT}}
 
-\\newcommand*{\\@durationlabel}{\\FrenchEnglish{DUREE}{DURATION}}
+\\newcommand*{\\@durationlabel}{\\UseLanguage{DUREE}{DURATION}{DAUER}}
 \\newcommand*{\\@duration}{Set with \\texttt{\\textbackslash duration\\{\\}}}
 \\newcommand*{\\duration}{\\renewcommand*{\\@duration}}
 
-\\newcommand*{\\@initiatorlabel}{\\FrenchEnglish{INITIATEUR}{INITIATED BY}}
+\\newcommand*{\\@initiatorlabel}{\\UseLanguage{INITIATEUR}{INITIATED BY}{INITIATOR}}
 \\newcommand*{\\@initiator}{Set with \\texttt{\\textbackslash initiator\\{\\}}}
 \\newcommand*{\\initiator}{\\renewcommand*{\\@initiator}}
 
-\\newcommand*{\\@participantlabel}{\\FrenchEnglish{PARTICIPANT}{PARTICIPANT}}
-\\newcommand*{\\@participantslabel}{\\FrenchEnglish{PARTICIPANTS}{PARTICIPANTS}}
+\\newcommand*{\\@participantlabel}{\\UseLanguage{PARTICIPANT}{PARTICIPANT}{TEILNEHMER}}
+\\newcommand*{\\@participantslabel}{\\UseLanguage{PARTICIPANTS}{PARTICIPANTS}{TEILNEHMER}}
 
-\\newcommand*{\\@preparedlabel}{\\FrenchEnglish{PREPARE PAR}{PREPARED BY}}
+\\newcommand*{\\@preparedlabel}{\\UseLanguage{PREPARE PAR}{PREPARED BY}{VORBEREITET VON}}
 \\newcommand*{\\@prepared}{Set with \\texttt{\\textbackslash prepared\\{\\}}}
 \\newcommand*{\\prepared}{\\renewcommand*{\\@prepared}}
 
-\\newcommand*{\\@presentlabel}{\\FrenchEnglish{PRESENT}{PRESENT}}
+\\newcommand*{\\@presentlabel}{\\UseLanguage{PRESENT}{PRESENT}{ANWESEND}}
 
-\\newcommand*{\\@projectlabel}{\\FrenchEnglish{PROJET}{PROJECT}}
+\\newcommand*{\\@projectlabel}{\\UseLanguage{PROJET}{PROJECT}{PROJEKT}}
 \\newcommand*{\\@project}{Set with \\texttt{\\textbackslash project\\{\\}}}
 \\newcommand*{\\project}{\\renewcommand*{\\@project}}
 
-\\newcommand*{\\@referencelabel}{\\FrenchEnglish{REFERENCE}{REFERENCE}}
+\\newcommand*{\\@referencelabel}{\\FrenchEnglish{REUseLanguageREFERENCE}}}
 
-\\newcommand*{\\@reportlabel}{\\FrenchEnglish{Rapport}{Report}}
+\\newcommand*{\\@reportlabel}}
 
-\\newcommand*{\\@reportnumberlabel}{\\FrenchEnglish{RAPPORT N°}{REPORT NUMBER}}
+\\newcommand*{\\@reportlabel}{\\UseLanguage{Rapport}{Report}{Bericht}}
+
+\\newcommand*{\\@reportnumberlabel}{\\UseLanguage{RAPPORT N°}{REPORT NUMBER}{BERICHT NUMMER}}
 \\newcommand*{\\@reportnumber}{Set with \\texttt{\\textbackslash reportnumber\\{\\}}}
 \\newcommand*{\\reportnumber}{\\renewcommand*{\\@reportnumber}}
 
@@ -181,13 +185,13 @@ headheight=\\baselineskip]{geometry}
 
 %% TASKS
 
-\\newcommand*{\\@tasklistlabel}{\\FrenchEnglish{Liste de tâches}{Task List}}
+\\newcommand*{\\@tasklistlabel}{\\UseLanguage{Liste de tâches}{Task List}{Aufgaben}}
 \\newcommand*{\\@tasknumberlabel}{\\#}
-\\newcommand*{\\@tasklabel}{\\FrenchEnglish{TACHE}{TASK}}
+\\newcommand*{\\@tasklabel}{\\UseLanguage{TACHE}{TASK}{Aufgabe}}
 
-\\newcommand*{\\@duelabel}{\\FrenchEnglish{DATE D'ECHEANCE}{DUE DATE}}
+\\newcommand*{\\@duelabel}{\\UseLanguage{DATE D'ECHEANCE}{DUE DATE}{ERLEDIGUNGSDATUM}}
 
-\\newcommand*{\\@responsiblelabel}{\\FrenchEnglish{RESPONSABLE}{RESPONSIBLE}}
+\\newcommand*{\\@responsiblelabel}{\\UseLanguage{RESPONSABLE}{RESPONSIBLE}{VERANTWORTLICH}}
 
 
 %% MINUTES %<------------------------------------------------------->%
@@ -195,7 +199,7 @@ headheight=\\baselineskip]{geometry}
 
 \\PassOptionsToPackage{table}{xcolor}
 
-\\renewcommand*{\\@authorlabel}{\\FrenchEnglish{ECRIT PAR}{WRITTEN BY}}
+\\renewcommand*{\\@authorlabel}{\\UseLanguage{ECRIT PAR}{WRITTEN BY}{GESCHRIEBEN VON}}
 
 
 %% Setting up header and footer
@@ -217,7 +221,7 @@ headheight=\\baselineskip]{geometry}
     \\hspace*{\\tabcolsep}\\@project
   \\end{minipage}%%
   \\hfill
-  \\thepage\\ \\FrenchEnglish{de}{of} \\pageref{LastPage}
+  \\thepage\\ \\UseLanguage{de}{of}{von} \\pageref{LastPage}
   ~~\\newline
   \\@separator
 }
