@@ -187,6 +187,9 @@ or
 
 
 * CHANGELOG
+** v0.4
+*** Features
+- ADD: German language (Thanks to [[https://github.com/mbenecke][@mbenecke]])
 ** v0.3
 *** Features
 - ADD: export to pdf and attach on mail
