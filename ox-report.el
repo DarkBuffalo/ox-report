@@ -331,7 +331,7 @@ headheight=\\baselineskip]{geometry}
 
 " ;;import de la feuille de syle dans texmf
                ("\\section{%s}" . "\\section*{%s}")
-               ("\\subsection{%s}" . "\\subsection*a{%s}")
+               ("\\subsection{%s}" . "\\subsection*{%s}")
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
