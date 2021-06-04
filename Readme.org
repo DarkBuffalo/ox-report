@@ -129,6 +129,10 @@ Example:
 #+END_SRC
 
 ** Use Yasnippet
+#+caption: Yasnippet & Columnview
+#+attr_latex: :width 300px
+[[file:img/ReportORG.gif]]
+
 - look [[https://vincent.demeester.fr/articles/my_organizational_workflow.html][vincent demeester's blog]] for meeting template
 #+BEGIN_SRC org
 # -*- mode: snippet -*-
