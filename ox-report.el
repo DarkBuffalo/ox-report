@@ -40,8 +40,6 @@
 (require 'ox)
 (require 'cl-lib)
 (require 'org-msg)
-;;(require 'mu4e)
-
 
 (add-to-list 'org-latex-packages-alist
              '("AUTO" "babel" t ("pdflatex")))
