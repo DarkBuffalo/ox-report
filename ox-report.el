@@ -48,9 +48,15 @@
              '("report"                          ;class-name
                "\\documentclass[10pt]{article}
 
+<<<<<<< HEAD
 \\usepackage[defaultfam,light,tabular,lining]{montserrat} %% Option 'defaultfam'
 %% only if the base font of the document is to be sans serig
 \\renewcommand*\\oldstylenums[1]{{\\fontfamily{Montserrat-TOsF}\\selectfont #1}}
+=======
+%%\\usepackage[defaultfam,light,tabular,lining]{montserrat} %% Option 'defaultfam'
+%% only if the base font of the document is to be sans serig
+%%\\renewcommand*\\oldstylenums[1]{{\\fontfamily{Montserrat-TOsF}\\selectfont #1}}
+>>>>>>> lessismore
 
 \\RequirePackage[utf8]{inputenc}
 \\RequirePackage[T1]{fontenc}
@@ -164,7 +170,11 @@ headheight=\\baselineskip]{geometry}
 \\newcommand*{\\@project}{Set with \\texttt{\\textbackslash project\\{\\}}}
 \\newcommand*{\\project}{\\renewcommand*{\\@project}}
 
+<<<<<<< HEAD
 \\newcommand*{\\@referencelabel}{\\UseLanguage{REFERENCE}{REFERENCE}{REFERENCE}}
+=======
+\\newcommand*{\\@referencelabel}{\\UseLanguage{REFERENCE}{REFERENCE}REFERENCE}}}
+>>>>>>> lessismore
 
 \\newcommand*{\\@reportlabel}}
 
@@ -325,6 +335,10 @@ headheight=\\baselineskip]{geometry}
   \\noindent
 }
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> lessismore
 \\makeatother
 
 " ;;import de la feuille de syle dans texmf
@@ -334,11 +348,14 @@ headheight=\\baselineskip]{geometry}
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
+<<<<<<< HEAD
 (defgroup org-export-report nil
   "Options specific to Report back-end."
   :tag "Org Report PDF"
   :group 'ox-report)
 
+=======
+>>>>>>> lessismore
 
 (org-export-define-derived-backend 'report 'latex
   :options-alist
@@ -365,7 +382,11 @@ headheight=\\baselineskip]{geometry}
     (:style "STYLE" nil nil))
   :translate-alist '((template . ox-report-template))
   :menu-entry
+<<<<<<< HEAD
   '(?r "Export to Report layout"
+=======
+  '(?R "Export to Report layout"
+>>>>>>> lessismore
        ((?l "As LaTeX file" ox-report-export-to-latex)
         (?p "As PDF file" ox-report-export-to-pdf)
         (?o "As PDF and Open"
@@ -390,7 +411,12 @@ headheight=\\baselineskip]{geometry}
       (message "File not found"))))
 
 (defun ox-report-template (contents info)
+<<<<<<< HEAD
   "INFO are the header data and CONTENTS is the content of the org file and return complete document string for this export."
+=======
+  "INFO are the header data and CONTENTS is the content of the
+org file and return complete document string for this export."
+>>>>>>> lessismore
   (concat
    ;; Time-stamp.
    (and (plist-get info :time-stamp-file)
