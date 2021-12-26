@@ -332,6 +332,55 @@ headheight=\\baselineskip]{geometry}
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
 
 
+
+
+(defun ox-report-export-to (backend &optional async subtreep visible-only
+				  body-only info)
+  "Export buffer to BACKEND.
+See `org-export-as' for the meaning of ASYNC SUBTREEP
+VISIBLE-ONLY BODY-ONLY and INFO."
+  (let* ((fname (buffer-file-name))
+	 (extensions '((html . ".html")
+		       (latex . ".tex")
+		       (ascii . ".txt")
+		       (odt . ".odf")))
+	 (cp (point))
+	 (mm) 				;marker to save place
+	 (export-name (concat (file-name-sans-extension fname)
+			      (or (cdr (assoc backend extensions)) ""))))
+
+    (org-export-with-buffer-copy
+     ;; Note I use a marker here to make sure we stay in the same place we were.
+     ;; This is more robust than save-excursion I think, since processing moves
+     ;; points around. In theory the marker should move too.
+     (setq mm (make-marker))
+     (move-marker mm cp)
+     (goto-char (marker-position mm))
+     (set-marker mm nil)
+     
+     (pcase backend
+       ;; odt is a little bit special, and is missing one argument
+       ('odt (org-open-file (org-odt-export-to-odt async subtreep visible-only
+						   info)
+			    'system))
+       (_
+	(org-open-file (org-export-to-file backend export-name
+			 async subtreep visible-only
+			 body-only info)
+		       'system))))))
+
+
+(defun ox-report-export-to-ascii (&optional async subtreep visible-only
+																						body-only info)
+  "Export the buffer to ascii and open.
+See `ox-report-export-as' for the meaning of ASYNC SUBTREEP
+VISIBLE-ONLY BODY-ONLY and INFO."
+  (ox-report-export-to 'ascii async subtreep visible-only
+		     body-only info))
+
+
+
+
 (org-export-define-derived-backend 'report 'latex
   :options-alist
   '((:latex-class "LATEX_CLASS" nil "report" t)
@@ -358,7 +407,8 @@ headheight=\\baselineskip]{geometry}
   :translate-alist '((template . ox-report-template))
   :menu-entry
   '(?R "Export to Report layout"
-       ((?l "As LaTeX file" ox-report-export-to-latex)
+       ((?a "to Ascii" ox-report-export-to-ascii)
+				(?l "As LaTeX file" ox-report-export-to-latex)
         (?p "As PDF file" ox-report-export-to-pdf)
         (?o "As PDF and Open"
             (lambda (a s v b)
