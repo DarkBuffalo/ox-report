@@ -135,7 +135,7 @@ headheight=\\baselineskip]{geometry}
 \\newcommand*{\\@authorlabel}{\\UseLanguage{Auteur(s)}{Author(s)}{Author(en)}}
 \\newcommand*{\\@Authorlabel}{\\UseLanguage{AUTEUR(S)}{AUTHOR(S)}{AUTHOR(EN)}}
 
-\\newcommand*{\\@checkedlabel}{\\UseLanguage{VERIFIE PAR}{CHECKED BY}BY}}}
+\\newcommand*{\\@checkedlabel}{\\UseLanguage{VERIFIE PAR}{CHECKED BY}{VERIFIZIERT DURCH}}
 \\newcommand*{\\@checked}{Set with \\texttt{\textbackslash checked\\{\\}}}
 \\newcommand*{\\checked}{\\renewcommand*{\\@checked}}
 
