@@ -48,9 +48,9 @@
              '("report"                          ;class-name
                "\\documentclass[10pt]{article}
 
-\\usepackage[defaultfam,light,tabular,lining]{montserrat} %% Option 'defaultfam'
+%%\\usepackage[defaultfam,light,tabular,lining]{montserrat} %% Option 'defaultfam'
 %% only if the base font of the document is to be sans serig
-\\renewcommand*\\oldstylenums[1]{{\\fontfamily{Montserrat-TOsF}\\selectfont #1}}
+%%\\renewcommand*\\oldstylenums[1]{{\\fontfamily{Montserrat-TOsF}\\selectfont #1}}
 
 \\RequirePackage[utf8]{inputenc}
 \\RequirePackage[T1]{fontenc}
@@ -135,7 +135,7 @@ headheight=\\baselineskip]{geometry}
 \\newcommand*{\\@authorlabel}{\\UseLanguage{Auteur(s)}{Author(s)}{Author(en)}}
 \\newcommand*{\\@Authorlabel}{\\UseLanguage{AUTEUR(S)}{AUTHOR(S)}{AUTHOR(EN)}}
 
-\\newcommand*{\\@checkedlabel}{\\FrenchEnglish{VERIUseLanguage}{CHECKED BY}BY}}}
+\\newcommand*{\\@checkedlabel}{\\UseLanguage{VERIFIE PAR}{CHECKED BY}BY}}}
 \\newcommand*{\\@checked}{Set with \\texttt{\textbackslash checked\\{\\}}}
 \\newcommand*{\\checked}{\\renewcommand*{\\@checked}}
 
@@ -164,7 +164,7 @@ headheight=\\baselineskip]{geometry}
 \\newcommand*{\\@project}{Set with \\texttt{\\textbackslash project\\{\\}}}
 \\newcommand*{\\project}{\\renewcommand*{\\@project}}
 
-\\newcommand*{\\@referencelabel}{\\FrenchEnglish{REUseLanguageREFERENCE}}}
+\\newcommand*{\\@referencelabel}{\\UseLanguage{REFERENCE}{REFERENCE}REFERENCE}}}
 
 \\newcommand*{\\@reportlabel}}
 
@@ -325,6 +325,7 @@ headheight=\\baselineskip]{geometry}
   \\noindent
 }
 
+
 \\makeatother
 
 " ;;import de la feuille de syle dans texmf
@@ -333,11 +334,6 @@ headheight=\\baselineskip]{geometry}
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-(defgroup org-export-report nil
-  "Options specific to Report back-end."
-  :tag "Org Report PDF"
-  :group 'ox-report)
 
 
 (org-export-define-derived-backend 'report 'latex
@@ -365,7 +361,7 @@ headheight=\\baselineskip]{geometry}
     (:style "STYLE" nil nil))
   :translate-alist '((template . ox-report-template))
   :menu-entry
-  '(?r "Export to Report layout"
+  '(?R "Export to Report layout"
        ((?l "As LaTeX file" ox-report-export-to-latex)
         (?p "As PDF file" ox-report-export-to-pdf)
         (?o "As PDF and Open"
@@ -390,7 +386,8 @@ headheight=\\baselineskip]{geometry}
       (message "File not found"))))
 
 (defun ox-report-template (contents info)
-  "INFO are the header data and CONTENTS is the content of the org file and return complete document string for this export."
+  "INFO are the header data and CONTENTS is the content of the
+org file and return complete document string for this export."
   (concat
    ;; Time-stamp.
    (and (plist-get info :time-stamp-file)
