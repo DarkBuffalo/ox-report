@@ -80,8 +80,8 @@ headheight=\\baselineskip]{geometry}
 \\makeatletter
 
 \\newenvironment{fullpage}
-    {\\skip\\noindent\\begin{minipage}
-    {\\textwidth+\\marginparwidth+\\marginparsep}\\skip\\smallskip}
+    {\\noindent\\begin{minipage}
+    {\\textwidth+\\marginparwidth+\\marginparsep}\\smallskip}
     {\\end{minipage}
 %%\\vspace{2mm}
 }
@@ -162,7 +162,7 @@ headheight=\\baselineskip]{geometry}
 
 \\newcommand*{\\@referencelabel}{\\UseLanguage{REFERENCE}{REFERENCE}{REFERENCE}}
 
-\\newcommand*{\\@reportlabel}}
+
 
 \\newcommand*{\\@reportlabel}{\\UseLanguage{Rapport}{Report}{Bericht}}
 
@@ -197,7 +197,7 @@ headheight=\\baselineskip]{geometry}
 
 
 %% Setting up header and footer
-\\RequirePackage{nccfancyhdr,lastpage}
+\\RequirePackage{fancyhdr,lastpage}
 \\pagestyle{fancy}
 
 %% Header
