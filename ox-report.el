@@ -1,7 +1,7 @@
 ;;; ox-report.el --- Export your org file to minutes report PDF file -*- lexical-binding: t -*-
 
 ;; Copyright (C) 2020  Matthias David
-;; Author: Matthias David <matthias@gnu.re>
+;; Author: Matthias David <db@gnu.re>
 ;; URL: https://github.com/DarkBuffalo/ox-report
 ;; Version: 0.2
 ;; Package-Requires: ((emacs "24.4") (org-msg "3.9"))
@@ -41,32 +41,29 @@
 (require 'cl-lib)
 (require 'org-msg)
 
-(add-to-list 'org-latex-packages-alist
-             '("AUTO" "babel" t ("pdflatex")))
+(setq org-latex-packages-alist
+             '(("AUTO" "babel" t ("pdflatex"))
+	       ("utf8" "inputenc" t ("pdflatex" "xelatex" "lualatex"))
+	       ("T1" "fontenc" t ("pdflatex" "xelatex" "lualatex"))))
 
 (add-to-list 'org-latex-classes
-             '("report"                          ;class-name
+             '("report" ;;class-name
                "\\documentclass[10pt]{article}
 
-\\RequirePackage[utf8]{inputenc}
-\\RequirePackage[T1]{fontenc}
-
-\\RequirePackage{setspace}              %%pour le titre
-\\RequirePackage{graphicx}	        %% gestion des images
-\\RequirePackage[dvipsnames,table]{xcolor}	%% gestion des couleurs
-\\RequirePackage{array}		%% gestion améliorée des tableaux
-\\RequirePackage{calc}		        %% syntaxe naturelle pour les calculs
-\\RequirePackage{enumitem}	        %% pour les listes numérotées
-\\RequirePackage[footnote]{snotez}	%% placer les notes de pied de page sur le coté
+\\RequirePackage{iflang}
+\\RequirePackage{setspace}                    %%pour le titre
+\\RequirePackage{graphicx}	              %% gestion des images
+\\RequirePackage[dvipsnames,table]{xcolor}    %% gestion des couleurs
+\\RequirePackage{array}		              %% gestion améliorée des tableaux
+\\RequirePackage{calc}		              %% syntaxe naturelle pour les calculs
+\\RequirePackage{enumitem}	              %% pour les listes numérotées
+\\RequirePackage[footnote]{snotez}	      %% placer les notes de pied de page sur le coté
 \\RequirePackage{microtype,textcase}
 \\RequirePackage{titlesec}
 \\RequirePackage{booktabs}
 
-\\RequirePackage{amsmath,
-	amssymb,
-	amsthm} 			%% For including math equations, theorems, symbols, etc
+\\RequirePackage{amsmath, amssymb, amsthm}   %% For including math equations, theorems, symbols, etc
 \\RequirePackage[toc]{multitoc}
-
 \\RequirePackage[a4paper,left=15mm,
 top=15mm,headsep=2\\baselineskip,
 textwidth=132mm,marginparsep=8mm,
@@ -106,9 +103,9 @@ headheight=\\baselineskip]{geometry}
 
 %% Command to provide alternative translations
 \\newcommand{\\UseLanguage}[3]{
-   \\iflanguage{french}{#1}{}
-   \\iflanguage{english}{#2}{}
-   \\iflanguage{german}{#3}{}
+   \\IfLanguageName{french}{#1}{}
+   \\IfLanguageName{english}{#2}{}
+   \\IfLanguageName{german}{#3}{}
 }
 
 %% This} separating line is used across several documents,
@@ -268,7 +265,7 @@ headheight=\\baselineskip]{geometry}
 
 
 %% Recipient address and information colophon
-\\RequirePackage{colortbl,tabularx,setspace,rotating}
+\\RequirePackage{colortbl,tabularx,rotating}
 \\newcommand{\\frontmatter}{%%
   \\sffamily%%
   \\noindent%%
@@ -357,7 +354,6 @@ VISIBLE-ONLY BODY-ONLY and INFO."
      (move-marker mm cp)
      (goto-char (marker-position mm))
      (set-marker mm nil)
-     
      (pcase backend
        ;; odt is a little bit special, and is missing one argument
        ('odt (org-open-file (org-odt-export-to-odt async subtreep visible-only
@@ -417,14 +413,13 @@ VISIBLE-ONLY BODY-ONLY and INFO."
         (?m "As PDF an attach to mail"
             (lambda (a s v b)
               (if a (ox-report-export-to-pdf t s v b)
-             (ox-report-pdf-to-mu4e (ox-report-export-to-pdf nil s v b))
-                ))))))
+             (ox-report-pdf-to-mu4e (ox-report-export-to-pdf nil s v b))))))))
 
 
 (defun ox-report-pdf-to-mu4e (att)
   "Export Pdf ATT to mail."
   (when (require 'mu4e nil 'noerror)
-    (mu4e~start))
+    (mu4e--start))
   (compose-mail)
   (when att
     (if (file-exists-p att)
@@ -455,8 +450,8 @@ org file and return complete document string for this export."
          (org-element-normalize-string
           (org-splice-latex-header
            document-class-string
-           org-latex-default-packages-alist ; Defined in org.el.
-           org-latex-packages-alist nil     ; Defined in org.el.
+           nil ;;org-latex-default-packages-alist ; Defined in org.el.
+           org-latex-packages-alist nil    ; Defined in org.el.
            (concat (org-element-normalize-string (plist-get info :latex-header))
                    (plist-get info :latex-header-extra)))))
         info)))
