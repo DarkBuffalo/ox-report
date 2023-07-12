@@ -59,7 +59,7 @@
 \\RequirePackage{enumitem}	              %% pour les listes numérotées
 \\RequirePackage[footnote]{snotez}	      %% placer les notes de pied de page sur le coté
 \\RequirePackage{microtype,textcase}
-\\RequirePackage{titlesec}
+%%\\RequirePackage{titlesec}
 \\RequirePackage{booktabs}
 
 \\RequirePackage{amsmath, amssymb, amsthm}   %% For including math equations, theorems, symbols, etc
@@ -117,7 +117,7 @@ headheight=\\baselineskip]{geometry}
 }
 
 
-%% LABEL %<-------------------------------------------------------->%
+%% LABEL %-------------------------------------------------------%
 %% Standard style for labels, small and bold
 \\newcommand{\\@labeltext}{\\large\\scshape}
 
@@ -158,9 +158,6 @@ headheight=\\baselineskip]{geometry}
 \\newcommand*{\\project}{\\renewcommand*{\\@project}}
 
 \\newcommand*{\\@referencelabel}{\\UseLanguage{REFERENCE}{REFERENCE}{REFERENCE}}
-
-
-
 \\newcommand*{\\@reportlabel}{\\UseLanguage{Rapport}{Report}{Bericht}}
 
 \\newcommand*{\\@reportnumberlabel}{\\UseLanguage{RAPPORT N°}{REPORT NUMBER}{BERICHT NUMMER}}
@@ -173,19 +170,14 @@ headheight=\\baselineskip]{geometry}
 \\newcommand*{\\@whenmeeting}{Set with \\texttt{\\textbackslash whenmeeting\\{\\}}}
 \\newcommand*{\\whenmeeting}{\\renewcommand*{\\@whenmeeting}}
 
-
 %% TASKS
-
 \\newcommand*{\\@tasklistlabel}{\\UseLanguage{Liste de tâches}{Task List}{Aufgaben}}
 \\newcommand*{\\@tasknumberlabel}{\\#}
 \\newcommand*{\\@tasklabel}{\\UseLanguage{TACHE}{TASK}{Aufgabe}}
-
 \\newcommand*{\\@duelabel}{\\UseLanguage{DATE D'ECHEANCE}{DUE DATE}{ERLEDIGUNGSDATUM}}
-
 \\newcommand*{\\@responsiblelabel}{\\UseLanguage{RESPONSABLE}{RESPONSIBLE}{VERANTWORTLICH}}
 
-
-%% MINUTES %<------------------------------------------------------->%
+%% MINUTES %-------------------------------------------------------%
 \\ProcessOptions\\relax
 
 \\PassOptionsToPackage{table}{xcolor}
@@ -198,6 +190,7 @@ headheight=\\baselineskip]{geometry}
 \\pagestyle{fancy}
 
 %% Header
+\\fancyhead{}
 \\renewcommand{\\headrulewidth}{0pt}
 
 %% Footer
@@ -217,8 +210,6 @@ headheight=\\baselineskip]{geometry}
   \\@separator
 }
 
-
-
 %% The logo box.
 \\newcommand{\\@rlogo}{
   \\noindent
@@ -228,7 +219,6 @@ headheight=\\baselineskip]{geometry}
   \\includegraphics[height=70px,width=70px,keepaspectratio]{\\@mainlogo}
 %%\\includegraphics[width=\\textwidth]{\\@mainlogo}
 }
-
 
 \\RequirePackage{xparse}
 \\newcommand{\\@participantstable}{}
@@ -262,7 +252,6 @@ headheight=\\baselineskip]{geometry}
       \\multicolumn{4}{@{}c@{}}{\\@separator}%%
     }%%
 }
-
 
 %% Recipient address and information colophon
 \\RequirePackage{colortbl,tabularx,rotating}
@@ -318,7 +307,6 @@ headheight=\\baselineskip]{geometry}
   \\noindent
 }
 
-
 \\makeatother
 
 " ;;import de la feuille de syle dans texmf
@@ -327,8 +315,6 @@ headheight=\\baselineskip]{geometry}
                ("\\subsubsection{%s}" . "\\subsubsection*{%s}")
                ("\\paragraph{%s}" . "\\paragraph*{%s}")
                ("\\subparagraph{%s}" . "\\subparagraph*{%s}")))
-
-
 
 
 (defun ox-report-export-to (backend &optional async subtreep visible-only

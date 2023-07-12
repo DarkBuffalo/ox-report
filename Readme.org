@@ -24,31 +24,6 @@ If you use Doom Emacs
 (package! ox-report)
 #+END_SRC
 
-* PREREQUISITES
-** Linux
-+ Texlive :: =sudo apt install texlive texlive-extra texlive-fonts-extra texlive-lang-french texlive-lang-english texlive-lang-german=
-+ Latex package
-  - montserrat
-  - titling
-  - enumitem
-  - snotez
-  - pgfopts
-  - pgf
-  - marginnote
-  - xpatch
-  - mparhack
-  - titlesec
-  - tocloft ??
-  - tcolorbox
-  - environ
-  - trimspaces
-  - ncctools
-  - lastpage
-  - wrapfig
-  - amsmath
-  - capt-of
-  - bigfoot
-  - babel
 
 * USAGE
 - =C-c C-e r o= :: Export as PDF and Open
