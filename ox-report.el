@@ -41,10 +41,20 @@
 (require 'cl-lib)
 (require 'org-msg)
 
+
+(defgroup ox-report nil
+  "Export your org file to minutes report PDF file."
+  :group 'ox)
+
+(defcustom ox-report-logo nil
+  "Logo path."
+  :type 'path
+  :group 'ox-group)
+
 (setq org-latex-packages-alist
-             '(("AUTO" "babel" t ("pdflatex"))
-	       ("utf8" "inputenc" t ("pdflatex" "xelatex" "lualatex"))
-	       ("T1" "fontenc" t ("pdflatex" "xelatex" "lualatex"))))
+      '(("AUTO" "babel" t ("pdflatex"))
+	("utf8" "inputenc" t ("pdflatex" "xelatex" "lualatex"))
+	("T1" "fontenc" t ("pdflatex" "xelatex" "lualatex"))))
 
 (add-to-list 'org-latex-classes
              '("report" ;;class-name
@@ -452,7 +462,7 @@ org file and return complete document string for this export."
 
 \\author{"
    (if (plist-get info :secretaire)
-       (format "%s" (plist-get info :secretaire) )
+       (format "%s" (plist-get info :secretaire))
      (org-export-data auteur info))
 "}
 \\title{"(org-export-data titre info)"}
@@ -469,8 +479,10 @@ org file and return complete document string for this export."
              (format "%s" (plist-get info :dure) )) "}
 
 \\makeatletter
-"(when (plist-get info :logo)
-   (format "\\newcommand{\\@mainlogo}{%s}" (plist-get info :logo) )) "
+"(if (file-exists-p (plist-get info :logo))
+   (format "\\newcommand{\\@mainlogo}{%s}" (plist-get info :logo))
+   (when ox-report-logo
+     (format "\\newcommand{\\@mainlogo}{%s}" (expand-file-name ox-report-logo)))) "
 \\makeatother
 
 "

@@ -16,12 +16,9 @@ Now available in MELPA! Install with =package-install=.
 If you use =use-package=, you can do the below instead:
 
 #+BEGIN_SRC emacs-lisp
-(use-package ox-report)
-#+END_SRC
-
-If you use Doom Emacs
-#+BEGIN_SRC emacs-lisp
-(package! ox-report)
+(use-package ox-report
+  :custom
+  (ox-report-logo "your/logo/path/not/png"))
 #+END_SRC
 
 
