@@ -115,6 +115,8 @@ headheight=\\baselineskip]{geometry}
 \\newcommand{\\UseLanguage}[3]{
    \\IfLanguageName{french}{#1}{}
    \\IfLanguageName{english}{#2}{}
+   \\IfLanguageName{american}{#2}{}
+   \\IfLanguageName{british}{#2}{}
    \\IfLanguageName{german}{#3}{}
 }
 
