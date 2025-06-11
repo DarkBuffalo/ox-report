@@ -40,6 +40,8 @@
 (require 'ox)
 (require 'cl-lib)
 (require 'org-msg)
+;; Optional dependencies
+(require 'ox-odt nil t)  ; Pour l'export ODT (optionnel)
 
 
 (defgroup ox-report nil
@@ -364,17 +366,380 @@ VISIBLE-ONLY BODY-ONLY and INFO."
 		       'system))))))
 
 
+;;; ASCII Export Functions
+
+;; Fonction pour gérer les traductions en ASCII
+(defun ox-report-ascii-use-language (french english german)
+  "Return appropriate translation based on document language.
+FRENCH is the French text, ENGLISH the English text, GERMAN the German text."
+  (let ((language (plist-get info :language)))
+    (cond
+     ((string-match "fr" (or language "")) french)
+     ((string-match "de" (or language "")) german)
+     (t english))))
+
+(defun ox-report-ascii-template (contents info)
+  "Return complete ASCII document string.
+CONTENTS is the transcoded contents string.
+INFO is a plist holding export options."
+  (concat
+   ;; En-tête du document
+   (ox-report-ascii-header info)
+   "\n"
+   ;; Table des participants
+   (ox-report-ascii-participants-table info)
+   "\n"
+   ;; Contenu principal
+   contents
+   "\n"
+   ;; Pied de page
+   (ox-report-ascii-footer info)))
+
+(defun ox-report-ascii-header (info)
+  "Generate ASCII header from INFO plist."
+  (let* ((title (org-export-data (plist-get info :title) info))
+         (author (if (plist-get info :secretaire)
+                     (plist-get info :secretaire)
+                   (org-export-data (plist-get info :author) info)))
+         (where (plist-get info :ou))
+         (when (plist-get info :quand))
+         (project (plist-get info :projet))
+         (duration (plist-get info :dure))
+         (initiator (plist-get info :initiateur))
+         (separator (make-string 72 ?=))
+         (language (or (plist-get info :language) "fr")))
+    (concat
+     separator "\n"
+     ;; Titre centré
+     (ox-report-ascii-center-string title 72) "\n"
+     separator "\n\n"
+
+     ;; Informations de la réunion
+     (when where
+       (concat (cond ((string-match "fr" language) "LIEU: ")
+                    ((string-match "de" language) "ORT: ")
+                    (t "LOCATION: "))
+               where "\n"))
+     (when when
+       (concat (cond ((string-match "fr" language) "DATE: ")
+                    ((string-match "de" language) "DATUM: ")
+                    (t "DATE: "))
+               when "\n"))
+     (when duration
+       (concat (cond ((string-match "fr" language) "DURÉE: ")
+                    ((string-match "de" language) "DAUER: ")
+                    (t "DURATION: "))
+               duration "\n"))
+     "\n"
+
+     ;; Informations organisationnelles
+     (when initiator
+       (concat (cond ((string-match "fr" language) "INITIATEUR: ")
+                    ((string-match "de" language) "INITIATOR: ")
+                    (t "INITIATED BY: "))
+               initiator "\n"))
+     (when author
+       (concat (cond ((string-match "fr" language) "SECRÉTAIRE: ")
+                    ((string-match "de" language) "GESCHRIEBEN VON: ")
+                    (t "WRITTEN BY: "))
+               author "\n"))
+     (when project
+       (concat (cond ((string-match "fr" language) "PROJET: ")
+                    ((string-match "de" language) "PROJEKT: ")
+                    (t "PROJECT: "))
+               project "\n"))
+     "\n")))
+
+(defun ox-report-ascii-center-string (str width)
+  "Center STR in a field of WIDTH characters."
+  (let* ((len (length str))
+         (padding (/ (- width len) 2)))
+    (if (> len width)
+        str
+      (concat (make-string padding ?\s) str))))
+
+(defun ox-report-ascii-participants-table (info)
+  "Generate ASCII participants table from INFO plist."
+  (let ((present (plist-get info :present))
+        (absent (plist-get info :absent))
+        (excused (plist-get info :excuse))
+        (separator (make-string 72 ?-))
+        (language (or (plist-get info :language) "fr")))
+    (concat
+     separator "\n"
+     (cond ((string-match "fr" language) "PARTICIPANTS")
+          ((string-match "de" language) "TEILNEHMER")
+          (t "PARTICIPANTS")) "\n"
+     separator "\n\n"
+
+     ;; Présents
+     (when present
+       (concat (cond ((string-match "fr" language) "PRÉSENTS:")
+                    ((string-match "de" language) "ANWESEND:")
+                    (t "PRESENT:")) "\n"
+               (ox-report-ascii-format-participants present)
+               "\n"))
+
+     ;; Absents
+     (when absent
+       (concat (cond ((string-match "fr" language) "ABSENTS:")
+                    ((string-match "de" language) "ABWESEND:")
+                    (t "ABSENT:")) "\n"
+               (ox-report-ascii-format-participants absent)
+               "\n"))
+
+     ;; Excusés
+     (when excused
+       (concat (cond ((string-match "fr" language) "EXCUSÉS:")
+                    ((string-match "de" language) "ENTSCHULDIGT:")
+                    (t "EXCUSED:")) "\n"
+               (ox-report-ascii-format-participants excused)
+               "\n"))
+
+     separator "\n")))
+
+(defun ox-report-ascii-format-participants (participants-string)
+  "Format PARTICIPANTS-STRING as a bulleted list."
+  (mapconcat (lambda (participant)
+               (concat "  • " (string-trim participant)))
+             (split-string participants-string ",")
+             "\n"))
+
+(defun ox-report-ascii-footer (info)
+  "Generate ASCII footer from INFO plist."
+  (let ((separator (make-string 72 ?-))
+        (project (plist-get info :projet))
+        (date (format-time-string "%d/%m/%Y"))
+        (language (or (plist-get info :language) "fr")))
+    (concat
+     "\n" separator "\n"
+     (format (cond ((string-match "fr" language) "Projet: %s | Date: %s")
+                   ((string-match "de" language) "Projekt: %s | Datum: %s")
+                   (t "Project: %s | Date: %s"))
+             (or project "N/A")
+             date)
+     "\n" separator)))
+
+(defun ox-report-ascii-headline (headline contents info)
+  "Transcode HEADLINE element into ASCII format.
+CONTENTS is the headline contents.
+INFO is a plist used as a communication channel."
+  (let* ((level (org-export-get-relative-level headline info))
+         (title (org-export-data (org-element-property :title headline) info))
+         (separator (cond ((= level 1) (make-string (length title) ?=))
+                         ((= level 2) (make-string (length title) ?-))
+                         (t ""))))
+    (concat
+     "\n"
+     ;; Titre de la section
+     (cond ((= level 1) (upcase title))
+           ((= level 2) title)
+           (t (concat (make-string (* 2 (- level 1)) ?\s) "• " title)))
+     "\n"
+     ;; Soulignement pour les niveaux 1 et 2
+     (when (and separator (not (string= separator "")))
+       (concat separator "\n"))
+     "\n"
+     ;; Contenu
+     contents)))
+
+(defun ox-report-ascii-section (section contents info)
+  "Transcode SECTION element into ASCII format.
+CONTENTS is the section contents.
+INFO is a plist used as a communication channel."
+  contents)
+
+;; Définition du backend ASCII dérivé
+(org-export-define-derived-backend 'report-ascii 'ascii
+  :options-alist
+  '((:present "PRESENT" nil nil)
+    (:absent "ABSENT" nil nil)
+    (:excuse "EXCUSE" nil nil)
+    (:secretaire "SECRETAIRE" nil nil t)
+    (:secretaire "SECRETARY" nil nil t)
+    (:dure "DURE" nil " ")
+    (:dure "DURATION" nil " ")
+    (:ou "OU" nil " ")
+    (:ou "WHERE" nil " ")
+    (:quand "QUAND" nil " ")
+    (:quand "WHEN" nil " ")
+    (:initiateur "INITIATEUR" nil " ")
+    (:initiateur "INITIATOR" nil " ")
+    (:projet "PROJET" nil " ")
+    (:projet "PROJECT" nil " ")
+    (:with-toc nil "toc" nil))
+  :translate-alist
+  '((template . ox-report-ascii-template)
+    (headline . ox-report-ascii-headline)
+    (section . ox-report-ascii-section)))
+
 (defun ox-report-export-to-ascii (&optional async subtreep visible-only
-																						body-only info)
-  "Export the buffer to ascii and open.
-See `ox-report-export-as' for the meaning of ASYNC SUBTREEP
-VISIBLE-ONLY BODY-ONLY and INFO."
-  (ox-report-export-to 'ascii async subtreep visible-only
-		     body-only info))
+                                           body-only info)
+  "Export current buffer to a text file with report formatting.
+
+If narrowing is active in the current buffer, only export its
+narrowed part.
+
+If a region is active, export that region.
+
+A non-nil optional argument ASYNC means the process should happen
+asynchronously.  The resulting file should be accessible through
+the `org-export-stack' interface.
+
+When optional argument SUBTREEP is non-nil, export the sub-tree
+at point, extracting information from the headline properties
+first.
+
+When optional argument VISIBLE-ONLY is non-nil, don't export
+contents of hidden elements.
+
+When optional argument BODY-ONLY is non-nil, only write contents.
+
+Return output file's name."
+  (interactive)
+  (let ((outfile (org-export-output-file-name ".txt" subtreep)))
+    (org-export-to-file 'report-ascii outfile
+      async subtreep visible-only body-only info)))
+
+(defun ox-report-export-to-ascii-and-open (&optional async subtreep visible-only
+                                                    body-only info)
+  "Export current buffer to ASCII and open the file.
+See `ox-report-export-to-ascii' for argument descriptions."
+  (interactive)
+  (let ((file (ox-report-export-to-ascii async subtreep visible-only body-only info)))
+    (when file
+      (org-open-file file))
+    file))
 
 
+;;; ODT Export Functions
+(defun ox-report-export-to-odt (&optional async subtreep visible-only
+                                         body-only ext-plist)
+  "Export current buffer as a Report ODT file.
+
+If narrowing is active in the current buffer, only export its
+narrowed part.
+
+If a region is active, export that region.
+
+A non-nil optional argument ASYNC means the process should happen
+asynchronously.  The resulting file should be accessible through
+the `org-export-stack' interface.
+
+When optional argument SUBTREEP is non-nil, export the sub-tree
+at point, extracting information from the headline properties
+first.
+
+When optional argument VISIBLE-ONLY is non-nil, don't export
+contents of hidden elements.
+
+When optional argument BODY-ONLY is non-nil, only write contents.
+
+EXT-PLIST, when provided, is a property list with external
+parameters overriding Org default settings, but still inferior to
+file-local settings.
+
+Return output file's name."
+  (interactive)
+  ;; Check if ox-odt is available
+  (unless (featurep 'ox-odt)
+    (user-error "ODT export backend not available. Please install ox-odt"))
+
+  (let* ((extension ".odt")
+         (file (org-export-output-file-name extension subtreep)))
+    ;; Add custom content at the beginning of the buffer
+    (org-export-with-buffer-copy
+     (goto-char (point-min))
+
+     ;; First, collect all the metadata
+     (let (title-pos where when project duration initiator present absent excused)
+       (save-excursion
+         ;; Find the title position
+         (when (re-search-forward "^#\\+TITLE:" nil t)
+           (setq title-pos (line-end-position)))
+
+         ;; Collect all metadata
+         (goto-char (point-min))
+         (when (re-search-forward "^#\\+OU:\\s-*\\(.+\\)" nil t)
+           (setq where (match-string 1)))
+         (goto-char (point-min))
+         (when (re-search-forward "^#\\+QUAND:\\s-*\\(.+\\)" nil t)
+           (setq when (match-string 1)))
+         (goto-char (point-min))
+         (when (re-search-forward "^#\\+PROJET:\\s-*\\(.+\\)" nil t)
+           (setq project (match-string 1)))
+         (goto-char (point-min))
+         (when (re-search-forward "^#\\+DURE:\\s-*\\(.+\\)" nil t)
+           (setq duration (match-string 1)))
+         (goto-char (point-min))
+         (when (re-search-forward "^#\\+INITIATEUR:\\s-*\\(.+\\)" nil t)
+           (setq initiator (match-string 1)))
+         (goto-char (point-min))
+         (when (re-search-forward "^#\\+PRESENT:\\s-*\\(.+\\)" nil t)
+           (setq present (match-string 1)))
+         (goto-char (point-min))
+         (when (re-search-forward "^#\\+ABSENT:\\s-*\\(.+\\)" nil t)
+           (setq absent (match-string 1)))
+         (goto-char (point-min))
+         (when (re-search-forward "^#\\+EXCUSE:\\s-*\\(.+\\)" nil t)
+           (setq excused (match-string 1))))
+
+       ;; Insert content right after the title
+       (when title-pos
+         (goto-char title-pos)
+         (insert "\n\n")
+
+         ;; Insert meeting information as a table
+         (insert "#+ATTR_ODT: :style \"TableWithHeading\"\n")
+         (insert "| *Information* | *Détails* |\n")
+         (insert "|---------------+-----------|\n")
+
+         (when where
+           (insert (format "| Lieu | %s |\n" where)))
+         (when when
+           (insert (format "| Date | %s |\n" when)))
+         (when project
+           (insert (format "| Projet | %s |\n" project)))
+         (when duration
+           (insert (format "| Durée | %s |\n" duration)))
+         (when initiator
+           (insert (format "| Initiateur | %s |\n" initiator)))
+
+         ;; Add participants section
+         (insert "\n* Participants\n\n")
+
+         (when present
+           (insert "** Présents\n")
+           (dolist (person (split-string present ","))
+             (insert (format "- %s\n" (string-trim person)))))
+
+         (when absent
+           (insert "\n** Absents\n")
+           (dolist (person (split-string absent ","))
+             (insert (format "- %s\n" (string-trim person)))))
+
+         (when excused
+           (insert "\n** Excusés\n")
+           (dolist (person (split-string excused ","))
+             (insert (format "- %s\n" (string-trim person)))))
+
+         (insert "\n")))
+
+     ;; Now export with the standard ODT exporter
+     (org-odt-export-to-odt async subtreep visible-only body-only))))
+
+(defun ox-report-export-to-odt-and-open (&optional async subtreep visible-only
+                                                   body-only ext-plist)
+  "Export current buffer as ODT and open.
+See `ox-report-export-to-odt' for argument descriptions."
+  (interactive)
+  (let ((file (ox-report-export-to-odt async subtreep visible-only body-only)))
+    (when file
+      (org-open-file file))
+    file))
 
 
+;;; LaTeX/PDF Export Functions
 (org-export-define-derived-backend 'report 'latex
   :options-alist
   '((:latex-class "LATEX_CLASS" nil "report" t)
@@ -401,17 +766,42 @@ VISIBLE-ONLY BODY-ONLY and INFO."
   :translate-alist '((template . ox-report-template))
   :menu-entry
   '(?R "Export to Report layout"
-       ((?a "to Ascii" ox-report-export-to-ascii)
-				(?l "As LaTeX file" ox-report-export-to-latex)
+       ((?a "to ASCII" ox-report-export-to-ascii)
+        (?A "to ASCII and open"
+            (lambda (a s v b)
+              (if a (ox-report-export-to-ascii-and-open t s v b)
+                (ox-report-export-to-ascii-and-open nil s v b))))
+        (?l "As LaTeX file" ox-report-export-to-latex)
         (?p "As PDF file" ox-report-export-to-pdf)
         (?o "As PDF and Open"
             (lambda (a s v b)
               (if a (ox-report-export-to-pdf t s v b)
                 (org-open-file (ox-report-export-to-pdf nil s v b)))))
+        (?d "As ODT file" ox-report-export-to-odt)
+        (?D "As ODT and open"
+            (lambda (a s v b)
+              (if a (ox-report-export-to-odt-and-open t s v b)
+                (ox-report-export-to-odt-and-open nil s v b))))
         (?m "As PDF an attach to mail"
             (lambda (a s v b)
               (if a (ox-report-export-to-pdf t s v b)
-             (ox-report-pdf-to-mu4e (ox-report-export-to-pdf nil s v b))))))))
+                (ox-report-pdf-to-mu4e (ox-report-export-to-pdf nil s v b))))))))
+
+;; Properly register the backend after it's fully defined
+(defun ox-report-register-backend ()
+  "Register the report backend with org-export."
+  (let ((backend (org-export-get-backend 'report)))
+    (when backend
+      (unless (memq backend org-export-registered-backends)
+        (add-to-list 'org-export-registered-backends backend)))))
+
+;; Register on load
+(eval-after-load 'ox
+  '(ox-report-register-backend))
+
+;; Also try to register immediately if ox is already loaded
+(when (featurep 'ox)
+  (ox-report-register-backend))
 
 
 (defun ox-report-pdf-to-mu4e (att)
@@ -626,6 +1016,15 @@ Return PDF file's name."
     (org-export-to-file 'report outfile
       async subtreep visible-only body-only ext-plist
       (lambda (file) (org-latex-compile file)))))
+
+;;;###autoload
+(defun ox-report-setup ()
+  "Setup ox-report export backend."
+  (require 'ox)
+  (require 'ox-latex)
+  (require 'ox-ascii)
+  ;; Ensure the backend is registered
+  (ox-report-register-backend))
 
 (provide 'ox-report)
 ;;; ox-report.el ends here
