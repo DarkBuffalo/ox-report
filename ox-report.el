@@ -1,9 +1,9 @@
 ;;; ox-report.el --- Export your org file to minutes report PDF file -*- lexical-binding: t -*-
 
-;; Copyright (C) 2020  Matthias David
+;; Copyright (C) 2020-2025  Matthias David
 ;; Author: Matthias David <db@gnu.re>
 ;; URL: https://github.com/DarkBuffalo/ox-report
-;; Version: 0.2
+;; Version: 0.5
 ;; Package-Requires: ((emacs "24.4") (org-msg "3.9"))
 ;; Keywords: org, outlines, report, exporter, meeting, minutes
 
@@ -55,8 +55,8 @@
 
 (setq org-latex-packages-alist
       '(("AUTO" "babel" t ("pdflatex"))
-	("utf8" "inputenc" t ("pdflatex" "xelatex" "lualatex"))
-	("T1" "fontenc" t ("pdflatex" "xelatex" "lualatex"))))
+        ("utf8" "inputenc" t ("pdflatex" "xelatex" "lualatex"))
+        ("T1" "fontenc" t ("pdflatex" "xelatex" "lualatex"))))
 
 (add-to-list 'org-latex-classes
              '("report" ;;class-name
@@ -337,14 +337,14 @@ headheight=\\baselineskip]{geometry}
 See `org-export-as' for the meaning of ASYNC SUBTREEP
 VISIBLE-ONLY BODY-ONLY and INFO."
   (let* ((fname (buffer-file-name))
-	 (extensions '((html . ".html")
-		       (latex . ".tex")
-		       (ascii . ".txt")
-		       (odt . ".odf")))
-	 (cp (point))
-	 (mm) 				;marker to save place
-	 (export-name (concat (file-name-sans-extension fname)
-			      (or (cdr (assoc backend extensions)) ""))))
+         (extensions '((html . ".html")
+                       (latex . ".tex")
+                       (ascii . ".txt")
+                       (odt . ".odf")))
+         (cp (point))
+         (mm) ;;marker to save place
+         (export-name (concat (file-name-sans-extension fname)
+                              (or (cdr (assoc backend extensions)) ""))))
 
     (org-export-with-buffer-copy
      ;; Note I use a marker here to make sure we stay in the same place we were.
@@ -573,6 +573,7 @@ INFO is a plist used as a communication channel."
     (headline . ox-report-ascii-headline)
     (section . ox-report-ascii-section)))
 
+;;;###autoload
 (defun ox-report-export-to-ascii (&optional async subtreep visible-only
                                            body-only info)
   "Export current buffer to a text file with report formatting.
@@ -601,6 +602,7 @@ Return output file's name."
     (org-export-to-file 'report-ascii outfile
       async subtreep visible-only body-only info)))
 
+;;;###autoload
 (defun ox-report-export-to-ascii-and-open (&optional async subtreep visible-only
                                                     body-only info)
   "Export current buffer to ASCII and open the file.
@@ -613,6 +615,7 @@ See `ox-report-export-to-ascii' for argument descriptions."
 
 
 ;;; ODT Export Functions
+;;;###autoload
 (defun ox-report-export-to-odt (&optional async subtreep visible-only
                                          body-only ext-plist)
   "Export current buffer as a Report ODT file.
@@ -728,6 +731,7 @@ Return output file's name."
      ;; Now export with the standard ODT exporter
      (org-odt-export-to-odt async subtreep visible-only body-only))))
 
+;;;###autoload
 (defun ox-report-export-to-odt-and-open (&optional async subtreep visible-only
                                                    body-only ext-plist)
   "Export current buffer as ODT and open.

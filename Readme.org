@@ -163,6 +163,11 @@ or
 
 
 * CHANGELOG
+** v0.5
+*** Features
+- Added full ASCII export functionality that was previously incomplete
+- ODT Export Capability
+
 ** v0.4
 *** Features
 - ADD: German language (Thanks to [[https://github.com/mbenecke][@mbenecke]])
